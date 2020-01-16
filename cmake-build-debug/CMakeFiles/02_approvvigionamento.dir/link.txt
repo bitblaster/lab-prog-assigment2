@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/02_approvvigionamento.dir/main.cpp.o CMakeFiles/02_approvvigionamento.dir/Model.cpp.o CMakeFiles/02_approvvigionamento.dir/Component.cpp.o CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o  -o 02_approvvigionamento 
