@@ -4,19 +4,20 @@
 
 #include "Component.h"
 
-Component::Component() {
-
-}
-
-Component::Component(int id, std::string name, int month, int price_1, int price_2, int price_3) {
-
-}
-
-int Component::getMonth() const {
-    return 0;
-}
-
 int Component::getPrice(int quantity) const {
-    return 0;
+    if(quantity <= 0){
+            return -1;
+    }
+    else{
+        if(quantity <= 10){
+            return price_1;
+        }
+        if(10 < quantity <= 50){
+            return price_2;
+        }
+        if(quantity > 50){
+            return price_3;
+        }
+    }
 }
 

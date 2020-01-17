@@ -17,10 +17,13 @@ class Component : public Entity{
 
 
 public:
-    Component();
-    Component(int id, std::string name, int month, int price_1, int price_2 , int price_3 );
+    Component(int id, std::string name, int month, int price_1, int price_2 , int price_3)
+        : Entity(id,name) , month {month} , price_1{price_1} , price_2{price_2} , price_3{price_3} {};
 
-    int getMonth() const;
+    int getMonth() const{
+        return month;
+    }
+
     int getPrice(int quantity) const;
 
 };
