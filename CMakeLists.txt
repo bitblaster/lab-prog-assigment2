@@ -3,4 +3,4 @@ project(02_approvvigionamento)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(02_approvvigionamento main.cpp Model.cpp Model.h Component.cpp Component.h Entity.cpp Entity.h)
+add_executable(02_approvvigionamento main.cpp Model.cpp Model.h Component.cpp Component.h Entity.cpp Entity.h Order.h Date.h Order.cpp Date.cpp)

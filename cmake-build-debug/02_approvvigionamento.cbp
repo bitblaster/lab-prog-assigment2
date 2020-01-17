@@ -90,6 +90,12 @@
 		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Component.h">
 			<Option target="02_approvvigionamento"/>
 		</Unit>
+		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Date.cpp">
+			<Option target="02_approvvigionamento"/>
+		</Unit>
+		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Date.h">
+			<Option target="02_approvvigionamento"/>
+		</Unit>
 		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Entity.cpp">
 			<Option target="02_approvvigionamento"/>
 		</Unit>
@@ -100,6 +106,12 @@
 			<Option target="02_approvvigionamento"/>
 		</Unit>
 		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Model.h">
+			<Option target="02_approvvigionamento"/>
+		</Unit>
+		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Order.cpp">
+			<Option target="02_approvvigionamento"/>
+		</Unit>
+		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/Order.h">
 			<Option target="02_approvvigionamento"/>
 		</Unit>
 		<Unit filename="/home/giacomo/Università/lab-prog-assigment2/main.cpp">
