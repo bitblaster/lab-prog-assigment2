@@ -150,6 +150,33 @@ Component.cpp.s:
 	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Component.cpp.s
 .PHONY : Component.cpp.s
 
+Date.o: Date.cpp.o
+
+.PHONY : Date.o
+
+# target to build an object file
+Date.cpp.o:
+	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Date.cpp.o
+.PHONY : Date.cpp.o
+
+Date.i: Date.cpp.i
+
+.PHONY : Date.i
+
+# target to preprocess a source file
+Date.cpp.i:
+	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Date.cpp.i
+.PHONY : Date.cpp.i
+
+Date.s: Date.cpp.s
+
+.PHONY : Date.s
+
+# target to generate assembly for a file
+Date.cpp.s:
+	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Date.cpp.s
+.PHONY : Date.cpp.s
+
 Entity.o: Entity.cpp.o
 
 .PHONY : Entity.o
@@ -204,6 +231,33 @@ Model.cpp.s:
 	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Model.cpp.s
 .PHONY : Model.cpp.s
 
+Order.o: Order.cpp.o
+
+.PHONY : Order.o
+
+# target to build an object file
+Order.cpp.o:
+	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Order.cpp.o
+.PHONY : Order.cpp.o
+
+Order.i: Order.cpp.i
+
+.PHONY : Order.i
+
+# target to preprocess a source file
+Order.cpp.i:
+	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Order.cpp.i
+.PHONY : Order.cpp.i
+
+Order.s: Order.cpp.s
+
+.PHONY : Order.s
+
+# target to generate assembly for a file
+Order.cpp.s:
+	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/Order.cpp.s
+.PHONY : Order.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -243,12 +297,18 @@ help:
 	@echo "... Component.o"
 	@echo "... Component.i"
 	@echo "... Component.s"
+	@echo "... Date.o"
+	@echo "... Date.i"
+	@echo "... Date.s"
 	@echo "... Entity.o"
 	@echo "... Entity.i"
 	@echo "... Entity.s"
 	@echo "... Model.o"
 	@echo "... Model.i"
 	@echo "... Model.s"
+	@echo "... Order.o"
+	@echo "... Order.i"
+	@echo "... Order.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
