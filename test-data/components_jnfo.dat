@@ -1,21 +1,21 @@
-1, elemento riscaldante 6cm 1200W, 2
-2, diodo di protezione surriscaldamento, 1
-3, involucro phon destro, 3
-4, involucro phon sinistro, 3
-5, motore 10W, 2
-6, interruttore, 1
-7, morsetto mammut a 2 vie, 2
-8, ventola 6cm, 2
-9, cavo elettrico con spina, 3
-10, motore 20W, 2
-11, ventola 18cm, 3
-12, involucro aspiratore anteriore, 4
-13, involucro aspiratore posteriore, 4
-14, elemento riscaldante 18cm 2000W, 1
-15, involucro termoventilatore anteriore, 2
-16, involucro termoventilatore posteriore, 2
-17, portalampade E27, 1
-18, vetro circolare convesso 28cm, 1
-19, base plafoniera 26cm, 1
-20, vetro semi-circolare convesso 20cm, 2
-21, base plafoniera 18cm, 3
+1 elemento_riscaldante_6cm_1200W 2
+2 diodo_di_protezione_surriscaldamento 1
+3 involucro_phone_destro 3
+4 involucro_phone_sinistro 3
+5 motore_10W 2
+6 interruttore 1
+7 morsetto_mammut_a_2_vie 2
+8 ventola_6cm 2
+9 cavo_elettrico_con_spina 3
+10 motore_20W 2
+11 ventola_18cm 3
+12 involucro_aspiratore_anteriore 4
+13 involucro_aspiratore_posteriore 4
+14 elemento_riscaldante_18cm_2000W 1
+15 involucro_termoventilatore_anteriore 2
+16 involucro_termoventilatore_posteriore 2
+17 portalampade_E27 1
+18 vetro_circolare_convesso_28cm 1
+19 base_plafoniera_26cm 1
+20 vetro_semi_circolare_convesso 20cm 2
+21 base plafoniera_18cm 3

@@ -1,3 +1,3 @@
-/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir
-/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir
+/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/edit_cache.dir

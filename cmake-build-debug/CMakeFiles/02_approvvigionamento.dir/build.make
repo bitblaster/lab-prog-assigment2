@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/CLion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/giacomo/Programmi/clion-2019.3.2/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/CLion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/giacomo/Programmi/clion-2019.3.2/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento
+CMAKE_SOURCE_DIR = /home/giacomo/Università/lab-prog-assigment2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug
+CMAKE_BINARY_DIR = /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/02_approvvigionamento.dir/depend.make
@@ -59,55 +59,55 @@ include CMakeFiles/02_approvvigionamento.dir/flags.make
 
 CMakeFiles/02_approvvigionamento.dir/main.cpp.o: CMakeFiles/02_approvvigionamento.dir/flags.make
 CMakeFiles/02_approvvigionamento.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/02_approvvigionamento.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/main.cpp.o -c /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/02_approvvigionamento.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/main.cpp.o -c /home/giacomo/Università/lab-prog-assigment2/main.cpp
 
 CMakeFiles/02_approvvigionamento.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/02_approvvigionamento.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/main.cpp > CMakeFiles/02_approvvigionamento.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giacomo/Università/lab-prog-assigment2/main.cpp > CMakeFiles/02_approvvigionamento.dir/main.cpp.i
 
 CMakeFiles/02_approvvigionamento.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/02_approvvigionamento.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/main.cpp -o CMakeFiles/02_approvvigionamento.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giacomo/Università/lab-prog-assigment2/main.cpp -o CMakeFiles/02_approvvigionamento.dir/main.cpp.s
 
 CMakeFiles/02_approvvigionamento.dir/Model.cpp.o: CMakeFiles/02_approvvigionamento.dir/flags.make
 CMakeFiles/02_approvvigionamento.dir/Model.cpp.o: ../Model.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/02_approvvigionamento.dir/Model.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/Model.cpp.o -c /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/02_approvvigionamento.dir/Model.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/Model.cpp.o -c /home/giacomo/Università/lab-prog-assigment2/Model.cpp
 
 CMakeFiles/02_approvvigionamento.dir/Model.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/02_approvvigionamento.dir/Model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Model.cpp > CMakeFiles/02_approvvigionamento.dir/Model.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giacomo/Università/lab-prog-assigment2/Model.cpp > CMakeFiles/02_approvvigionamento.dir/Model.cpp.i
 
 CMakeFiles/02_approvvigionamento.dir/Model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/02_approvvigionamento.dir/Model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Model.cpp -o CMakeFiles/02_approvvigionamento.dir/Model.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giacomo/Università/lab-prog-assigment2/Model.cpp -o CMakeFiles/02_approvvigionamento.dir/Model.cpp.s
 
 CMakeFiles/02_approvvigionamento.dir/Component.cpp.o: CMakeFiles/02_approvvigionamento.dir/flags.make
 CMakeFiles/02_approvvigionamento.dir/Component.cpp.o: ../Component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/02_approvvigionamento.dir/Component.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/Component.cpp.o -c /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Component.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/02_approvvigionamento.dir/Component.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/Component.cpp.o -c /home/giacomo/Università/lab-prog-assigment2/Component.cpp
 
 CMakeFiles/02_approvvigionamento.dir/Component.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/02_approvvigionamento.dir/Component.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Component.cpp > CMakeFiles/02_approvvigionamento.dir/Component.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giacomo/Università/lab-prog-assigment2/Component.cpp > CMakeFiles/02_approvvigionamento.dir/Component.cpp.i
 
 CMakeFiles/02_approvvigionamento.dir/Component.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/02_approvvigionamento.dir/Component.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Component.cpp -o CMakeFiles/02_approvvigionamento.dir/Component.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giacomo/Università/lab-prog-assigment2/Component.cpp -o CMakeFiles/02_approvvigionamento.dir/Component.cpp.s
 
 CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o: CMakeFiles/02_approvvigionamento.dir/flags.make
 CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o: ../Entity.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o -c /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Entity.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o -c /home/giacomo/Università/lab-prog-assigment2/Entity.cpp
 
 CMakeFiles/02_approvvigionamento.dir/Entity.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/02_approvvigionamento.dir/Entity.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Entity.cpp > CMakeFiles/02_approvvigionamento.dir/Entity.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giacomo/Università/lab-prog-assigment2/Entity.cpp > CMakeFiles/02_approvvigionamento.dir/Entity.cpp.i
 
 CMakeFiles/02_approvvigionamento.dir/Entity.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/02_approvvigionamento.dir/Entity.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Entity.cpp -o CMakeFiles/02_approvvigionamento.dir/Entity.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giacomo/Università/lab-prog-assigment2/Entity.cpp -o CMakeFiles/02_approvvigionamento.dir/Entity.cpp.s
 
 # Object files for target 02_approvvigionamento
 02_approvvigionamento_OBJECTS = \
@@ -125,7 +125,7 @@ CMakeFiles/02_approvvigionamento.dir/Entity.cpp.s: cmake_force
 02_approvvigionamento: CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o
 02_approvvigionamento: CMakeFiles/02_approvvigionamento.dir/build.make
 02_approvvigionamento: CMakeFiles/02_approvvigionamento.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable 02_approvvigionamento"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable 02_approvvigionamento"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/02_approvvigionamento.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -138,6 +138,6 @@ CMakeFiles/02_approvvigionamento.dir/clean:
 .PHONY : CMakeFiles/02_approvvigionamento.dir/clean
 
 CMakeFiles/02_approvvigionamento.dir/depend:
-	cd /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/giacomo/Università/lab-prog-assigment2 /home/giacomo/Università/lab-prog-assigment2 /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/02_approvvigionamento.dir/depend
 

@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Component.cpp" "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/Component.cpp.o"
-  "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Entity.cpp" "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o"
-  "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/Model.cpp" "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/Model.cpp.o"
-  "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/main.cpp" "/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/main.cpp.o"
+  "/home/giacomo/Università/lab-prog-assigment2/Component.cpp" "/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/Component.cpp.o"
+  "/home/giacomo/Università/lab-prog-assigment2/Entity.cpp" "/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/Entity.cpp.o"
+  "/home/giacomo/Università/lab-prog-assigment2/Model.cpp" "/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/Model.cpp.o"
+  "/home/giacomo/Università/lab-prog-assigment2/main.cpp" "/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles/02_approvvigionamento.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

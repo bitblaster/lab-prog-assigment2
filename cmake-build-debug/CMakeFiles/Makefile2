@@ -35,19 +35,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/CLion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/giacomo/Programmi/clion-2019.3.2/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/CLion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/giacomo/Programmi/clion-2019.3.2/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento
+CMAKE_SOURCE_DIR = /home/giacomo/Università/lab-prog-assigment2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug
+CMAKE_BINARY_DIR = /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/02_approvvigionamento.dir/all:
 	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/depend
 	$(MAKE) -f CMakeFiles/02_approvvigionamento.dir/build.make CMakeFiles/02_approvvigionamento.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target 02_approvvigionamento"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target 02_approvvigionamento"
 .PHONY : CMakeFiles/02_approvvigionamento.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/02_approvvigionamento.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/02_approvvigionamento.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/giacomo/Università/lab-prog-assigment2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/02_approvvigionamento.dir/rule
 
 # Convenience name for target.

@@ -1,6 +1,8 @@
-10, motore, 1
-11, ventola, 1
-7, morsetto mammut, 1
-9, cavo elettrico, 1
-12, involucro anteriore, 1
-13, involucro posteriore, 1
+01 aspiratore
+
+10 motore 1
+11 ventola 1
+7 morsetto_mammut 1
+9 cavo_elettrico 1
+12 involucro_anteriore 1
+13 involucro_posteriore 1
