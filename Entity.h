@@ -2,8 +2,8 @@
 // Created by mozzicator on 16/01/20.
 //
 
-#ifndef INC_02_APPROVVIGIONAMENTO_ENTITY_H
-#define INC_02_APPROVVIGIONAMENTO_ENTITY_H
+#ifndef INC_ENTITY_H
+#define INC_ENTITY_H
 
 #include <string>
 
@@ -15,14 +15,14 @@ protected:
     Entity(int entity_id, std::string entity_name) : id {entity_id}, name {entity_name} {}
 
 public:
-    int getId() const {
+    int get_id() const {
         return id;
     }
 
-    const std::string &getName() const {
+    const std::string &get_name() const {
         return name;
     }
 };
 
 
-#endif //INC_02_APPROVVIGIONAMENTO_ENTITY_H
+#endif //INC_ENTITY_H

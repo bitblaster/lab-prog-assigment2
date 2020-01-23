@@ -2,31 +2,31 @@
 // Created by giacomo on 17/01/20.
 //
 
-#ifndef INC_02_APPROVVIGIONAMENTO_ORDER_H
-#define INC_02_APPROVVIGIONAMENTO_ORDER_H
+#ifndef INC_ORDER_H
+#define INC_ORDER_H
 
 #include "Model.h"
 #include "Component.h"
-#include "Date.h"
 
 class Order{
-    Date timestamp;
+    bool timestamp;
     int model_id;
     int quantity;
+    bool processed;
 
 public:
-    Order(Date timestamp, int model_id, int quantity) : timestamp{timestamp}, model_id{model_id}, quantity{quantity} {};
+    Order(bool timestamp, int model_id, int quantity) : timestamp{timestamp}, model_id{model_id}, quantity{quantity} {};
 
-    Date getTimestamp() const;
+    bool get_timestamp() const;
 
-    int getOrderedId() const{
+    int get_model_id() const{
         return model_id;
     }
 
-    int getQuantity() const{
+    int get_quantity() const{
         return quantity;
     }
 };
 
 
-#endif //INC_02_APPROVVIGIONAMENTO_ORDER_H
+#endif //INC_ORDER_H
