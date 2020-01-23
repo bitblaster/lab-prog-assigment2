@@ -15,7 +15,8 @@ namespace parsers {
         void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        ComponentParser(std::string fileName) : FileParser{fileName} {}
+        // Ereditiamo i costruttori
+        using FileParser::FileParser;
 
         // TODO: verificare performance di copia e lifetime quando usato il vector fuori dello scope del parser
         const std::vector<Component>& get_parsed_components() {

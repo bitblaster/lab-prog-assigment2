@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "parsers/ComponentParser.h"
+#include "parsers/ModelListParser.h"
 
 using namespace parsers;
 using namespace std;
@@ -37,7 +38,15 @@ int main() {
         for (const Component &comp : cp.get_parsed_components()) {
             cout << comp << endl;
         }
-        cout << "Hello, World!" << endl;
+
+        ModelListParser mlp("models.dat");
+        mlp.parse();
+
+        cout << "Models:" << endl;
+        for (const Model &model : mlp.get_parsed_models()) {
+            cout << model << endl;
+        }
+
     } catch (ParsingException pe) {
         cout << pe.what() << endl << "Exiting..." << endl;
         return 1;

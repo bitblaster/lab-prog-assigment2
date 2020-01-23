@@ -7,7 +7,7 @@
 
 using namespace std;
 
-double Component::get_price(const int quantity) {
+double Component::get_price(const int quantity) const {
     if(quantity <= 0){
             return -1;
     }
@@ -24,7 +24,7 @@ double Component::get_price(const int quantity) {
     }
 }
 
-ostream& operator <<(ostream& stream, const Component& comp) {
-    stream << comp.get_id() << ',' << comp.get_name();
+ostream& operator <<(ostream& stream, const Component& component) {
+    stream << component.get_id() << ',' << component.get_name();
     return stream;
 }

@@ -20,8 +20,12 @@ class Model : public Entity {
 public:
     Model(const int id, const std::string name, const double price) : Entity(id, name), price {price} {}
 
-    double get_price() {
+    double get_price() const {
         return price;
+    }
+
+    const std::vector<ComponentReference>& get_components() const {
+        return components;
     }
 
     void add_component(const ComponentReference &comp) {
@@ -29,5 +33,6 @@ public:
     }
 };
 
+std::ostream& operator << (std::ostream& stream, const Model& model);
 
 #endif //INC_MODEL_H

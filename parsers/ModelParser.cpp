@@ -11,7 +11,7 @@ using namespace std;
 
 namespace parsers {
     void ModelParser::parse_row(const int line, const std::vector<std::string> &parsedFields) {
-        if (line == 1 && parsedFields.size() != 2 || parsedFields.size() != 3)
+        if (parsedFields.size() != 3)
             throw ParsingException(parsedFileName, line);
 
         if(line == 1) {
