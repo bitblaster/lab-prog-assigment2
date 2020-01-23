@@ -9,10 +9,13 @@
 
 class Entity {
 protected:
-    const int id;
-    const std::string name;
+    int id;
+    std::string name;
 
-    Entity(int entity_id, std::string entity_name) : id {entity_id}, name {entity_name} {}
+    Entity() = default;
+    Entity(const int entity_id, const std::string &entity_name) : id {entity_id}, name {entity_name} {}
+    //Entity(const Entity &) = default;
+    //Entity(Entity &&) = default;
 
 public:
     int get_id() const {
@@ -22,6 +25,8 @@ public:
     const std::string &get_name() const {
         return name;
     }
+
+    //Entity& operator=(const Entity &) = default;
 };
 
 

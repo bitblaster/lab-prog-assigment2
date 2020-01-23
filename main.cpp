@@ -35,10 +35,13 @@ int main() {
         cp.parse();
 
         cout << "Components:" << endl;
-        for (const Component &comp : cp.get_parsed_components()) {
-            cout << comp << endl;
+        for(const pair<int, Component> &p : cp.get_parsed_components()) {
+            cout << p.second << endl;
         }
 
+        cout << "Prova Component:" << cp.get_parsed_components().at(2) << endl;
+
+        //ModelListParser mlp("models.dat", cp.get_parsed_components());
         ModelListParser mlp("models.dat");
         mlp.parse();
 
@@ -46,6 +49,7 @@ int main() {
         for (const Model &model : mlp.get_parsed_models()) {
             cout << model << endl;
         }
+
 
     } catch (ParsingException pe) {
         cout << pe.what() << endl << "Exiting..." << endl;

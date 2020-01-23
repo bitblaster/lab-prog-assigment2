@@ -12,8 +12,9 @@ namespace parsers {
         if (parsedFields.size() != 6)
             throw ParsingException(parsedFileName, line);
 
+        int id = stoi(parsedFields[0]);
         Component parsed(
-                stoi(parsedFields[0]),  // id
+                id,
                 parsedFields[1],        // name
                 stoi(parsedFields[2]),  // months_to_delivery
                 stod(parsedFields[3]),  // price_1
@@ -21,6 +22,6 @@ namespace parsers {
                 stod(parsedFields[5])   // price_3
         );
 
-        parsedComponents.push_back(parsed);
+        parsedComponents[id] = parsed;
     }
 }
