@@ -8,7 +8,8 @@
 using namespace std;
 
 ostream& operator <<(ostream& stream, const Order& order) {
-    tm time = order.get_timestamp();
+    time_t timestamp = order.get_timestamp();
+    tm time {*localtime(&timestamp)};
     stream << put_time(&time, "%c") << "," << order.get_model_id() << ",quantity:" << order.get_quantity();
     return stream;
 }

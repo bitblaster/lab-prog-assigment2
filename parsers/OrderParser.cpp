@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <chrono>
 #include <iostream>
+#include <algorithm>
 #include "FileParser.h"
 #include "OrderParser.h"
 #include "../Order.h"
@@ -25,9 +26,16 @@ namespace parsers {
         try {
             int modelId {stoi(parsedFields[1])};
             int quantity = {stoi(parsedFields[2])};
-            parsedOrders.push_back(Order(orderTime, modelId, quantity));
+            parsedOrders.push_back(Order(mktime(&orderTime), modelId, quantity));
         } catch (exception e) {
             throw ParsingException(parsedFileName, line);
         }
+    }
+
+    void OrderParser::parse() {
+        FileParser::parse();
+
+        // Ordiniamo gli ordini appena letti per timestamp (v. operator < di Order)
+        sort(parsedOrders.begin(), parsedOrders.end());
     }
 }

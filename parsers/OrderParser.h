@@ -21,9 +21,11 @@ namespace parsers {
         using FileParser::FileParser;
 
         // TODO: verificare performance di copia e lifetime quando usato il vector fuori dello scope del parser
-        const std::vector<Order> get_parsed_orders() const {
+        const std::vector<Order>& get_parsed_orders() const {
             return parsedOrders;
         }
+
+        void parse() override;
     };
 }
 

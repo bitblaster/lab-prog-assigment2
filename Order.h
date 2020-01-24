@@ -10,15 +10,15 @@
 #include "Component.h"
 
 class Order {
-    const std::tm timestamp;
-    const int model_id;
-    const int quantity;
+    std::time_t timestamp;
+    int model_id;
+    int quantity;
     bool processed;
 
 public:
-    Order(const std::tm timestamp, const int model_id, const int quantity) : timestamp{timestamp}, model_id{model_id}, quantity{quantity} {};
+    Order(const std::time_t timestamp, const int model_id, const int quantity) : timestamp{timestamp}, model_id{model_id}, quantity{quantity} {};
 
-    std::tm get_timestamp() const {
+    std::time_t get_timestamp() const {
         return timestamp;
     }
 
@@ -36,6 +36,10 @@ public:
 
     void set_processed(bool val) {
         processed = val;
+    }
+
+    bool operator<(const Order &rhs) const {
+        return timestamp < rhs.timestamp;
     }
 };
 

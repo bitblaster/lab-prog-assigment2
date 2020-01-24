@@ -17,7 +17,7 @@ namespace parsers {
 
     public:
         FileParser(const std::string &fileName) : parsedFileName{fileName} {}
-        void parse();
+        virtual void parse();
         bool get_successful_parsing() {
             return successfulParsing;
         }

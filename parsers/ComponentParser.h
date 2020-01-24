@@ -20,7 +20,7 @@ namespace parsers {
         using FileParser::FileParser;
 
         // TODO: verificare performance di copia e lifetime quando usato il vector fuori dello scope del parser
-        const std::map<int, Component> get_parsed_components() const {
+        const std::map<int, Component>& get_parsed_components() const {
             return parsedComponents;
         }
     };
