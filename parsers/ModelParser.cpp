@@ -14,21 +14,25 @@ namespace parsers {
         if (parsedFields.size() != 3)
             throw ParsingException(parsedFileName, line);
 
-        if(line == 1) {
-            parsedModel = new Model(
-                    stoi(parsedFields[0]),  // id
-                    parsedFields[1],            //name
-                    stod(parsedFields[2])   // price
-            );
-        } else {
-            assert(parsedModel != nullptr);
+        try {
+            if(line == 1) {
+                parsedModel = new Model(
+                        stoi(parsedFields[0]),  // id
+                        parsedFields[1],            //name
+                        stod(parsedFields[2])   // price
+                );
+            } else {
+                assert(parsedModel != nullptr);
 
-            ComponentReference comp(
-                    stoi(parsedFields[0]),  // id
-                    parsedFields[1],        // name
-                    stoi(parsedFields[2])  // quantity
-            );
-            parsedModel->add_component(comp);
+                ComponentReference comp(
+                        stoi(parsedFields[0]),  // id
+                        parsedFields[1],        // name
+                        stoi(parsedFields[2])  // quantity
+                );
+                parsedModel->add_component(comp);
+            }
+        } catch (exception e) {
+            throw ParsingException(parsedFileName, line);
         }
     }
 }

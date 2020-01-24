@@ -2,13 +2,14 @@
 #include <vector>
 #include "parsers/ComponentParser.h"
 #include "parsers/ModelListParser.h"
+#include "parsers/OrderParser.h"
 
 using namespace parsers;
 using namespace std;
 
 int main() {
     // parsing components
-    // parsing models, ordinando componenti per mesi necessari
+    // parsing models, ordinando componenti per mesi necessari <-----------------
     // parsing orders ordinati per data
 
     // prendere primo e ultimo mese ordini
@@ -50,7 +51,13 @@ int main() {
             cout << model << endl;
         }
 
+        OrderParser op("orders.dat");
+        op.parse();
 
+        cout << "Orders:" << endl;
+        for (const Order &order : op.get_parsed_orders()) {
+            cout << order << endl;
+        }
     } catch (ParsingException pe) {
         cout << pe.what() << endl << "Exiting..." << endl;
         return 1;

@@ -8,20 +8,21 @@
 using namespace std;
 
 namespace parsers {
-    void ComponentParser::parse_row(const int line, const std::vector<std::string> &parsedFields) {
+    void ComponentParser::parse_row(const int line, const vector<string> &parsedFields) {
         if (parsedFields.size() != 6)
             throw ParsingException(parsedFileName, line);
 
-        int id = stoi(parsedFields[0]);
-        Component parsed(
-                id,
-                parsedFields[1],        // name
-                stoi(parsedFields[2]),  // months_to_delivery
-                stod(parsedFields[3]),  // price_1
-                stod(parsedFields[4]),  // price_2
-                stod(parsedFields[5])   // price_3
-        );
+        try {
+            int id {stoi(parsedFields[0])};
+            string name {parsedFields[1]};
+            int months {stoi(parsedFields[2])};
+            double price_1 {stod(parsedFields[3])};
+            double price_2 {stod(parsedFields[4])};
+            double price_3 {stod(parsedFields[5])};
 
-        parsedComponents[id] = parsed;
+            parsedComponents[id] = Component(id, name, months, price_1, price_2, price_3);
+        } catch (exception e) {
+            throw ParsingException(parsedFileName, line);
+        }
     }
 }
