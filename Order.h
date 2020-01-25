@@ -18,8 +18,12 @@ class Order {
 public:
     Order(const std::time_t timestamp, const int model_id, const int quantity) : timestamp{timestamp}, model_id{model_id}, quantity{quantity} {};
 
-    std::time_t get_timestamp() const {
+    const std::time_t get_timestamp() const {
         return timestamp;
+    }
+
+    const std::tm get_localtime() const {
+        return *localtime(&timestamp);
     }
 
     int get_model_id() const{
@@ -37,6 +41,8 @@ public:
     void set_processed(bool val) {
         processed = val;
     }
+
+    bool in_month(const int month, const int year) const;
 
     bool operator<(const Order &rhs) const {
         return timestamp < rhs.timestamp;

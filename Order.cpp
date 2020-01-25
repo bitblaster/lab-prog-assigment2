@@ -7,6 +7,11 @@
 
 using namespace std;
 
+bool Order::in_month(const int month, const int year) const {
+    tm localTime = get_localtime();
+    return localTime.tm_mon == month && localTime.tm_year == year;
+}
+
 ostream& operator <<(ostream& stream, const Order& order) {
     time_t timestamp = order.get_timestamp();
     tm time {*localtime(&timestamp)};

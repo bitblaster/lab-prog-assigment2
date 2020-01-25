@@ -11,13 +11,13 @@
 
 namespace parsers {
     class ModelParser : public FileParser {
-        Model *parsedModel{nullptr};
+        Model *parsedModel;
 
     protected:
         void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        ModelParser(std::string fileName) : FileParser{fileName} {}
+        ModelParser(std::string fileName) : FileParser{fileName}, parsedModel{nullptr} {}
 
         ~ModelParser() {
             delete parsedModel;
