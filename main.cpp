@@ -44,15 +44,15 @@ int main() {
     try {
 
         BatchProcessor bp;
-        bp.load_components("components_info.dat");
-        bp.load_models("models.dat");
+        bp.load_components("/home/giacomo/Università/lab-prog-assigment2/test-data/components_info.dat");
+        bp.load_models("/home/giacomo/Università/lab-prog-assigment2/test-data/models.dat");
 
         double cashAmount;
 
         // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
         // Questo ci constringe però ad ordinare gli ordini dopo il caricamento (v. OrderParser::parse())
         vector<Order> orders;
-        OrderParser op("orders.dat", cashAmount, orders);
+        OrderParser op("/home/giacomo/Università/lab-prog-assigment2/test-data/orders.dat", cashAmount, orders);
         op.parse();
 
         if(orders.size() > 0) {
@@ -61,10 +61,13 @@ int main() {
             for (const Order &order : orders) {
                 cout << order << endl;
             }
+            cout<<"Cassa dispondibile: "<<bp.get_cash_amount();
 
             queue<Order> orderQueue {};  // coda degli ordini non ancora evasi
             // TODO: migliorare usando una funzione membro di Order tipo get_localtime
             // solo che mi dava leak per l'uso di localtime, quindi ho lasciato stare
+
+            //prendo primo e ultimo mese
             time_t time = orders.begin()->get_timestamp();
             tm minTime = *localtime(&time);
             time = orders.begin()->get_timestamp();
@@ -75,13 +78,15 @@ int main() {
 
             // Cicliamo per tutti i mesi che intercorrono dal mese/anno del primo ordine al mese/anno dell'ultimo
             while(curPeriod.get_month() <= maxTime.tm_mon && curPeriod.get_year() <= maxTime.tm_year) {
-                // Aggiungiamo tutti gli ordini del mese corrente
+
+                // Aggiunta alla coda ordini di questo mese
                 for (vector<Order>::iterator it = orders.begin(); it != orders.end() && (*it).in_period(curPeriod);  ++it) {
                     bp.append_order(*it);
                 }
 
-                bp.process_next_batch();
 
+                //passo al mese successivo
+                bp.process_next_batch();
                 ++curPeriod;
             }
         }

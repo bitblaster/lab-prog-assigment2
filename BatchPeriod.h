@@ -25,8 +25,12 @@ public:
         return month > 0 && year > 0;
     }
 
-    // implementare operatore + (per il delivery) e < (per il confronto)
     BatchPeriod& operator++();
+
+    bool operator<(const BatchPeriod& b) const;
+    bool operator==(const BatchPeriod& b) const;
+    bool operator!=(const BatchPeriod& b) const;
+
 };
 
 

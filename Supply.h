@@ -6,16 +6,18 @@
 #define INC_02_APPROVVIGIONAMENTO_SUPPLY_H
 
 
-#include "Component.h"
+#include "ComponentUsage.h"
 #include "BatchPeriod.h"
 
 // TODO capire come fare un set di supply in cui ;la chiave sia la combinazione di componente e batchperiod!
 class Supply {
-    const Component &component;
-    const BatchPeriod delivery_period;
-    int quantity;
+    const ComponentUsage &component;
+    const BatchPeriod delivery_period; //periodo di arrivo componenti
+    int quantity; //quantità di componenti in arrivo
 
-    Supply(const Component &component, BatchPeriod &deliveryPeriod, int initialQuantity);
+    Supply(const ComponentUsage &component, BatchPeriod &deliveryPeriod, int initialQuantity);
+
+   // BatchPeriod
 };
 
 

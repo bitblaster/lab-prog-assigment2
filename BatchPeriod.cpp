@@ -13,3 +13,21 @@ BatchPeriod& BatchPeriod::operator++() {
 
     return *this;
 }
+
+
+bool BatchPeriod::operator<(const BatchPeriod& b) const{
+    if(year < b.get_year()) return true;
+    if(year == b.get_year())return month < b.get_month();
+    return false;
+
+}
+
+bool BatchPeriod::operator==(const BatchPeriod &b) const{
+    return month==b.get_month() && year==b.get_year();
+}
+
+bool BatchPeriod::operator!=(const BatchPeriod &b) const{
+    return !(month==b.get_month() && year==b.get_year());
+}
+
+

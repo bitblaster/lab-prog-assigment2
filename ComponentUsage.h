@@ -8,6 +8,7 @@
 
 #include "Part.h"
 #include <string>
+#include "Component.h"
 
 class ComponentUsage {
     const Component &component;
