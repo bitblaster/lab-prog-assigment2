@@ -8,6 +8,7 @@
 #include <chrono>
 #include "Model.h"
 #include "Component.h"
+#include "BatchPeriod.h"
 
 class Order {
     std::time_t timestamp;
@@ -20,10 +21,6 @@ public:
 
     const std::time_t get_timestamp() const {
         return timestamp;
-    }
-
-    const std::tm get_localtime() const {
-        return *localtime(&timestamp);
     }
 
     int get_model_id() const{
@@ -42,7 +39,7 @@ public:
         processed = val;
     }
 
-    bool in_month(const int month, const int year) const;
+    bool in_period(const BatchPeriod period) const;
 
     bool operator<(const Order &rhs) const {
         return timestamp < rhs.timestamp;

@@ -6,16 +6,13 @@
 #include "parsers/ModelListParser.h"
 #include "parsers/OrderParser.h"
 #include "parsers/ModelParser.h"
+#include "Order.h"
+#include "BatchProcessor.h"
+#include "BatchPeriod.h"
 
 using namespace parsers;
 
 using namespace std;
-
-void
-process_production(int month, int year, double &cashAmount, queue<Order> &orderQueue, const vector<Model> &modelMap,
-                   const unordered_map<int, Component> &componentMap);
-
-const Model& test();
 
 int main() {
 
@@ -46,82 +43,51 @@ int main() {
                 // (la classe che gestisce l'acquisto eventualmente aggiunge a un acquisto dello stesso componente nello mese la nuova quantità
     try {
 
-        const Model &mm=test();
-        cout << mm.get_components()[0].get_name();
+        BatchProcessor bp;
+        bp.load_components("components_info.dat");
+        bp.load_models("models.dat");
 
-        //ComponentParser cp("/home/mozzicator/sviluppo/cpp/assignments/02-approvvigionamento/test-data/components_info.dat");
-        ComponentParser cp("components_info.dat");
-        cp.parse();
+        double cashAmount;
 
-        cout << "Components:" << endl;
-        for(const pair<int, Component> &p : cp.get_parsed_components()) {
-            cout << p.second << endl;
-        }
-
-        cout << "Prova Component:" << cp.get_parsed_components().at(2) << endl;
-
-        //ModelListParser mlp("models.dat", cp.get_parsed_components());
-        ModelListParser mlp("models.dat");
-        mlp.parse();
-
-        cout << "Models:" << endl;
-        for (const Model &model : mlp.get_parsed_models()) {
-            cout << model << endl;
-        }
-
-        OrderParser op("orders.dat");
+        // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
+        // Questo ci constringe però ad ordinare gli ordini dopo il caricamento (v. OrderParser::parse())
+        vector<Order> orders;
+        OrderParser op("orders.dat", cashAmount, orders);
         op.parse();
 
-        const vector<Order> &orders = op.get_parsed_orders();
-
         if(orders.size() > 0) {
+            bp.set_cash_amount(cashAmount);
             cout << "Orders:" << endl;
             for (const Order &order : orders) {
                 cout << order << endl;
             }
 
-            double cashAmount = op.get_cash_amount();
             queue<Order> orderQueue {};  // coda degli ordini non ancora evasi
-            tm minTime = orders.begin()->get_localtime();
-            tm maxTime = orders.end()->get_localtime();
-            int curMonth = minTime.tm_mon;
-            int curYear = minTime.tm_year;
+            // TODO: migliorare usando una funzione membro di Order tipo get_localtime
+            // solo che mi dava leak per l'uso di localtime, quindi ho lasciato stare
+            time_t time = orders.begin()->get_timestamp();
+            tm minTime = *localtime(&time);
+            time = orders.begin()->get_timestamp();
+            tm maxTime = *localtime(&time);
+            BatchPeriod curPeriod(minTime.tm_mon, minTime.tm_year);
+            bp.set_batch_period(curPeriod);
             int orderIndex=0;
 
             // Cicliamo per tutti i mesi che intercorrono dal mese/anno del primo ordine al mese/anno dell'ultimo
-            while(curMonth <= maxTime.tm_mon && curYear <= maxTime.tm_year) {
+            while(curPeriod.get_month() <= maxTime.tm_mon && curPeriod.get_year() <= maxTime.tm_year) {
                 // Aggiungiamo tutti gli ordini del mese corrente
-                while (orderIndex < orders.size() && orders[orderIndex].in_month(curMonth, curYear)) {
-                    orderQueue.push(orders[orderIndex]);
-                    ++orderIndex;
+                for (vector<Order>::iterator it = orders.begin(); it != orders.end() && (*it).in_period(curPeriod);  ++it) {
+                    bp.append_order(*it);
                 }
 
-                process_production(curMonth, curYear, cashAmount, orderQueue, mlp.get_parsed_models(), cp.get_parsed_components());
+                bp.process_next_batch();
 
-                // Passiamo al prossimo mese, tenendo naturalmente conto anche dell'anno
-                ++curMonth;
-                if(curMonth > 12) {
-                    curMonth = 1;
-                    ++curYear;
-                }
+                ++curPeriod;
             }
         }
-
     } catch (ParsingException pe) {
         cout << "Error: " << pe.what() << endl << "Exiting..." << endl;
         return 1;
     }
     return 0;
-}
-
-void
-process_production(int month, int year, double &cashAmount, queue<Order> &orderQueue, const vector<Model> &modelMap,
-                   const unordered_map<int, Component> &componentMap) {
-
-}
-
-const Model& test() {
-    ModelParser mp("05-asciugacapelli.dat");
-    mp.parse();
-    return mp.get_parsed_model();
 }

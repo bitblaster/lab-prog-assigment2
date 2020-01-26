@@ -20,7 +20,7 @@ namespace parsers {
             double price_2 {stod(parsedFields[4])};
             double price_3 {stod(parsedFields[5])};
 
-            parsedComponents[id] = Component(id, name, months, price_1, price_2, price_3);
+            component_map[id] = Component(id, name, months, price_1, price_2, price_3);
         } catch (exception e) {
             throw ParsingException(parsedFileName, line);
         }

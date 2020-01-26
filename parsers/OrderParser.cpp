@@ -24,7 +24,7 @@ namespace parsers {
                 throw ParsingException(parsedFileName, line);
             }
         } else {
-            tm orderTime = {};
+            tm orderTime {};
             stringstream ss(parsedFields[0]);
             ss >> get_time(&orderTime, "%Y-%m-%d_%H:%M:%S");
             if (ss.fail())
@@ -33,7 +33,7 @@ namespace parsers {
             try {
                 int modelId{stoi(parsedFields[1])};
                 int quantity = {stoi(parsedFields[2])};
-                parsedOrders.push_back(Order(mktime(&orderTime), modelId, quantity));
+                parsed_orders.push_back(Order(mktime(&orderTime), modelId, quantity));
             } catch (exception e) {
                 throw ParsingException(parsedFileName, line);
             }
@@ -44,6 +44,6 @@ namespace parsers {
         FileParser::parse();
 
         // Alla fine del parsing ordiniamo gli ordini per timestamp (v. operator < di Order)
-        sort(parsedOrders.begin(), parsedOrders.end());
+        sort(parsed_orders.begin(), parsed_orders.end());
     }
 }

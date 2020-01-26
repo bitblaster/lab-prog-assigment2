@@ -5,28 +5,26 @@
 #ifndef INC_PARSERS_MODELPARSER_H
 #define INC_PARSERS_MODELPARSER_H
 
+#include <map>
 #include "FileParser.h"
 #include "../Component.h"
 #include "../Model.h"
 
 namespace parsers {
     class ModelParser : public FileParser {
-        Model *parsedModel;
+        Model *parsed_model;
+        std::map<int, Model> &model_map;
+        const std::map<int, Component> &component_map;
 
     protected:
         void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        ModelParser(std::string fileName) : FileParser{fileName}, parsedModel{nullptr} {}
+        ModelParser(std::string fileName, std::map<int, Model> &modelMap, const std::map<int, Component> &componentMap);
 
-        ~ModelParser() {
-            delete parsedModel;
-            parsedModel = nullptr;
-        }
+        ~ModelParser();
 
-        const Model& get_parsed_model() {
-            return *parsedModel;
-        }
+        void parse() override;
     };
 }
 

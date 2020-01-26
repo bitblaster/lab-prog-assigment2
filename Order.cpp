@@ -7,9 +7,10 @@
 
 using namespace std;
 
-bool Order::in_month(const int month, const int year) const {
-    tm localTime = get_localtime();
-    return localTime.tm_mon == month && localTime.tm_year == year;
+bool Order::in_period(const BatchPeriod period) const {
+    tm localTime = *localtime(&timestamp);
+    //tm localTime = get_localtime();
+    return localTime.tm_mon == period.get_month() && localTime.tm_year == period.get_year();
 }
 
 ostream& operator <<(ostream& stream, const Order& order) {

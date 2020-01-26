@@ -6,31 +6,36 @@
 #define INC_MODEL_H
 
 #include <string>
-#include <vector>
+#include <set>
 #include "Component.h"
-#include "Entity.h"
-#include "ComponentReference.h"
+#include "Part.h"
+#include "ComponentUsage.h"
 
 //TODO: definire copy/move constructors e operators!!!
 
-class Model : public Entity {
+class Model : public Part {
     double price;
-    std::vector<ComponentReference> components;
+    std::set<ComponentUsage> components;
 
 public:
-    Model(const int id, const std::string name, const double price) : Entity(id, name), price {price} {}
+    Model() = default;
+    Model(const int id, const std::string name, const double price) : Part(id, name), price {price} {}
+    Model(const Model &model) = default;
+    Model(Model &&model) = default;
 
     double get_price() const {
         return price;
     }
 
-    const std::vector<ComponentReference>& get_components() const {
+    const std::set<ComponentUsage>& get_components() const {
         return components;
     }
 
-    void add_component(const ComponentReference &comp) {
-        components.push_back(comp);
+    void add_component(const ComponentUsage &comp) {
+        components.insert(comp);
     }
+
+    Model& operator=(Model&&) = default;
 };
 
 std::ostream& operator << (std::ostream& stream, const Model& model);

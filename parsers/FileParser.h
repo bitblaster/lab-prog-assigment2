@@ -13,11 +13,14 @@ namespace parsers {
     protected:
         bool successfulParsing {false};
         const std::string parsedFileName;
+
         virtual void parse_row(const int line, const std::vector<std::string> &parsedFields) = 0;
 
     public:
         FileParser(const std::string &fileName) : parsedFileName{fileName} {}
+
         virtual void parse();
+
         bool get_successful_parsing() {
             return successfulParsing;
         }

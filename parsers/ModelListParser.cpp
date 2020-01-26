@@ -14,8 +14,7 @@ namespace parsers {
             throw ParsingException(parsedFileName, line);
 
         const string &fileName {parsedFields[0]};
-        ModelParser p(fileName);
+        ModelParser p(fileName, model_map, component_map);
         p.parse();
-        parsedModels.push_back(p.get_parsed_model());
     }
 }
