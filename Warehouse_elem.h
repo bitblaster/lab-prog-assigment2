@@ -2,8 +2,8 @@
 // Created by giacomo on 26/01/20.
 //
 
-#ifndef INC_02_APPROVVIGIONAMENTO_WAREHOUSE_ELEM_H
-#define INC_02_APPROVVIGIONAMENTO_WAREHOUSE_ELEM_H
+#ifndef INC_WAREHOUSE_ELEM_H
+#define INC_WAREHOUSE_ELEM_H
 
 #include "Component.h"
 
@@ -38,4 +38,4 @@ public:
 
 
 };
-#endif //INC_02_APPROVVIGIONAMENTO_WAREHOUSE_ELEM_H
+#endif //INC_WAREHOUSE_ELEM_H

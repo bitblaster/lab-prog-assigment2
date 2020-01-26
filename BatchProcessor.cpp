@@ -22,7 +22,7 @@ void BatchProcessor::append_order(const Order &order) {
     order_queue.push(order);
 }
 
-void BatchProcessor::process_next_batch() {
+void BatchProcessor::process_batch() {
 
     ++batch_period;
 }

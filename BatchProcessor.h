@@ -35,13 +35,17 @@ public:
         return fund.get_cash();
     }
 
-    void set_batch_period(BatchPeriod batchPeriod) {
+    const BatchPeriod& get_batch_period() {
+        return batch_period;
+    }
+
+    void set_batch_period(BatchPeriod &batchPeriod) {
         batch_period = batchPeriod;
     }
 
     void append_order(const Order &order);
 
-    void process_next_batch();
+    void process_batch();
 };
 
 

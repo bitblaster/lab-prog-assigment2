@@ -44,15 +44,15 @@ int main() {
     try {
 
         BatchProcessor bp;
-        bp.load_components("/home/giacomo/Università/lab-prog-assigment2/test-data/components_info.dat");
-        bp.load_models("/home/giacomo/Università/lab-prog-assigment2/test-data/models.dat");
+        bp.load_components("components_info.dat");
+        bp.load_models("models.dat");
 
         double cashAmount;
 
         // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
         // Questo ci constringe però ad ordinare gli ordini dopo il caricamento (v. OrderParser::parse())
         vector<Order> orders;
-        OrderParser op("/home/giacomo/Università/lab-prog-assigment2/test-data/orders.dat", cashAmount, orders);
+        OrderParser op("orders.dat", cashAmount, orders);
         op.parse();
 
         if(orders.size() > 0) {
@@ -64,30 +64,30 @@ int main() {
             cout<<"Cassa dispondibile: "<<bp.get_cash_amount();
 
             queue<Order> orderQueue {};  // coda degli ordini non ancora evasi
-            // TODO: migliorare usando una funzione membro di Order tipo get_localtime
-            // solo che mi dava leak per l'uso di localtime, quindi ho lasciato stare
+            // TODO: migliorare usando una funzione membro di Order tipo get_localtime, solo che mi dava leak per l'uso di localtime, quindi ho lasciato stare
 
-            //prendo primo e ultimo mese
+            // Prendiamo il primo e l'ultimo mese
             time_t time = orders.begin()->get_timestamp();
             tm minTime = *localtime(&time);
             time = orders.begin()->get_timestamp();
             tm maxTime = *localtime(&time);
-            BatchPeriod curPeriod(minTime.tm_mon, minTime.tm_year);
-            bp.set_batch_period(curPeriod);
+
+            BatchPeriod lastPeriod {maxTime.tm_mon, maxTime.tm_year};
+            bp.set_batch_period(BatchPeriod(minTime.tm_mon, minTime.tm_year););
             int orderIndex=0;
 
             // Cicliamo per tutti i mesi che intercorrono dal mese/anno del primo ordine al mese/anno dell'ultimo
-            while(curPeriod.get_month() <= maxTime.tm_mon && curPeriod.get_year() <= maxTime.tm_year) {
+            // TODO bisogna tenere conto degli ordini elaborati l'ultimo mese non evadibili, che saranno evasi solo in mesi successivi, quando arrivano i componenti
+            while(bp.get_batch_period() <= lastPeriod) {
 
                 // Aggiunta alla coda ordini di questo mese
-                for (vector<Order>::iterator it = orders.begin(); it != orders.end() && (*it).in_period(curPeriod);  ++it) {
+                for (vector<Order>::iterator it = orders.begin(); it != orders.end() && (*it).in_period(bp.get_batch_period());  ++it) {
                     bp.append_order(*it);
                 }
 
 
-                //passo al mese successivo
-                bp.process_next_batch();
-                ++curPeriod;
+                // Elaborazione del lotto corrente
+                bp.process_batch();
             }
         }
     } catch (ParsingException pe) {

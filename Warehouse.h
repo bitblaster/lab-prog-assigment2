@@ -11,6 +11,10 @@
 
 class Warehouse { //componenti ordinati e arrivati ma non ancora utilizzati
     //mappa dei componenti
+    // TODO per ogni componente dev'esserci la quantità in magazzino e la quantità disponibile
+    // ovvero se un modello ha bisogno di un componente in maniera parziale lo deve poter "bloccare"
+    // per evitare che si chieda la fornitura solo del delta di un  componente e poi un ordine successivo venga evaso
+    // "rubando" il componente da sotto il naso e rimandando ancora l'ordine inevaso
     std::vector<Warehouse_elem> v;
 public:
     Warehouse() = default;

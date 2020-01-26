@@ -10,8 +10,10 @@ class BatchPeriod {
     int month;
     int year;
 
+    void check_validity();
+
 public:
-    BatchPeriod(int month, int year) : month{month}, year{year} {}
+    BatchPeriod(int month, int year);
 
     int get_month() const {
         return month;
@@ -21,17 +23,21 @@ public:
         return year;
     }
 
-    bool is_valid() {
-        return month > 0 && year > 0;
-    }
+    void add_months(unsigned int amount);
 
     BatchPeriod& operator++();
-
-    bool operator<(const BatchPeriod& b) const;
-    bool operator==(const BatchPeriod& b) const;
+        bool operator==(const BatchPeriod& rhs) const;
     bool operator!=(const BatchPeriod& b) const;
 
+    bool operator<(const BatchPeriod &rhs) const;
+
+    bool operator>(const BatchPeriod &rhs) const;
+
+    bool operator<=(const BatchPeriod &rhs) const;
+
+    bool operator>=(const BatchPeriod &rhs) const;
 };
 
+BatchPeriod operator+(BatchPeriod lhs, int months);
 
 #endif //INC_BATCHPERIOD_H
