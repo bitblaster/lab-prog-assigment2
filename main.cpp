@@ -10,10 +10,14 @@
 #include "BatchProcessor.h"
 #include "BatchPeriod.h"
 #include "Supply.h"
+#include <string>
 
 using namespace parsers;
 
 using namespace std;
+
+void orderSelection(string& order);
+class FileOrdersNotFound{};
 
 int main() {
 
@@ -43,12 +47,17 @@ int main() {
             // se non ok:
                 // ordinare componenti mancanti con numero mesi maggiore se ci sono i soldi
                 // (la classe che gestisce l'acquisto eventualmente aggiunge a un acquisto dello stesso componente nello mese la nuova quantità
+
+
     try {
+
+        string orders;
+        orderSelection(orders);
 
         BatchProcessor bp;
         bp.load_components("components_info.dat");
         bp.load_models("models.dat");
-        bp.load_orders("orders.dat");
+        bp.load_orders(orders);
 
         set<Supply> ppp;
         Component c1(12, "pippolo", 3, 1,2,3);
@@ -71,6 +80,21 @@ int main() {
     } catch (ParsingException pe) {
         cout << "Error: " << pe.what() << endl << "Exiting..." << endl;
         return 1;
+    }catch (FileOrdersNotFound){
+        cout<<"File order inserito non valido o non trovato,devi inserirne uno tra quelli indicati"<<endl<< "Exiting..."<< endl;
+        return 1;
     }
+
     return 0;
+
 }
+
+void orderSelection(string& order){
+    cout<<"Inserire il nome del file di ordine da eseguire nel formato 'orders<1/2/3/4>.dat': "<<endl;
+    string oo;
+    cin>>oo;
+    if(oo!= "orders1.dat" && oo!="orders2.dat" && oo!="orders3.dat" && oo!="orders4.dat") {throw FileOrdersNotFound{};};
+    order = oo;
+    return;
+};
+
