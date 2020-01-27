@@ -8,6 +8,7 @@
 #include "BatchProcessor.h"
 #include "parsers/OrderParser.h"
 
+
 using namespace std;
 using namespace parsers;
 
@@ -53,9 +54,9 @@ bool BatchProcessor::can_produce() {
 
     // TODO verificare quali altre condizioni valgono per la produzione (es. non ci sono soldi per evadere nessuno degli ordini)
     // TODO bisogna tenere conto degli ordini elaborati l'ultimo mese non evadibili, che saranno evasi solo in mesi successivi, quando arrivano i componenti
-//    if(cash_amount <= 0) {
-//        for(Order &o : order_queue)
-//    }
+   if(cash_amount <= 0) {
+        return false;
+   }
 
     return true;
 }
@@ -67,6 +68,18 @@ void BatchProcessor::enqueue_new_orders() {
     }
 }
 
+
+void BatchProcessor::start_production() {
+    while (can_produce()){
+        verify_supplies();
+        enqueue_new_orders();
+        verify_orders();
+        process_batch();
+    }
+
+}
+
+//TODO: verifica le componenti in arrivo, se il mese corrente corrisponde con quello di arrivo le aggiungo a warehouse
 void BatchProcessor::verify_supplies() {
 }
 
@@ -75,12 +88,37 @@ void BatchProcessor::process_batch() {
     ++batch_period;
 }
 
-void BatchProcessor::start_production() {
-    while (can_produce()) {
-        verify_supplies();
-        enqueue_new_orders();
-        process_batch();
-    }
+ //TODO:FUNZIONE CHE STAMPA STATO ATTUALE DEL WAREHOUSE, SUPPLIES E ORDINE EVASI
+void BatchProcessor::current_status(){
+    cout<<"Current status of: "<<endl<<endl;
 
+    cout<<"Acquisti effettuati: "<<endl;
+    for (const Supply &s : supplies) {
+        cout << s.get_component().get_id() << " - " << s.get_delivery_period().get_month() << '/' << s.get_delivery_period().get_year() << " q:" << s.get_quantity() << endl;
+    }
+    cout<<endl<<"Magazzino: "<<endl;
+    cout<<warehouse;
+
+    cout<<endl<<"Ordini evasi: "<<endl;
+    for(const Order& order : processed_orders){
+        cout<<order<<endl;
+    }
+}
+
+//TODO: CONTROLLA GLI ORDINI IN CODA, SE CI SONO COMPONENTI, IN CASO PRODURRE con process_order().
+void BatchProcessor::verify_orders() {
+
+}
+
+void BatchProcessor::process_order() {
+
+}
+
+void BatchProcessor::warehouse_status() {
+
+}
+
+void BatchProcessor::add_processed_order(Order order) {
+    if(order.is_processed()) processed_orders.push_back(order);
 }
 

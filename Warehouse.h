@@ -25,12 +25,15 @@ public:
     int getSize() const {
         return v.size();
     }
-    Component get (int i) {
-        return v[i].getComponent();
+    Warehouse_elem getElement(int i) const
+    {
+        return v[i];
     }
-    Component operator[] (int i){
-        return v[i].getComponent();
+
+    Warehouse_elem operator[] (int i) const{
+        return v[i];
     }
 };
 
+std::ostream& operator << (std::ostream& stream, const Warehouse& warehouse);
 #endif //INC_WAREHOUSE_H

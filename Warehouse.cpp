@@ -2,6 +2,7 @@
 // Created by Giacomo Seno on 17/01/2020.
 //
 
+#include <iostream>
 #include "Warehouse.h"
 #include "Component.h"
 
@@ -30,5 +31,12 @@ Component Warehouse::remove(const Component& comp, int quantity){
     throw ElemNotFount{};
 }
 
+std::ostream& operator <<(std::ostream& stream, const Warehouse& warehouse){
+
+    for(int i = 0; i < warehouse.getSize() ; ++i){
+        std::cout<< warehouse.getElement(i).getComponent() <<" - quantità: "<<warehouse.getElement(i).getQuantity()<<std::endl;
+    }
+    return stream;
+}
 
 
