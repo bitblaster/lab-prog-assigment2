@@ -17,16 +17,27 @@
 class BatchProcessor {
     std::map<int, Component> component_map;
     std::map<int, Model> model_map;
-    std::list<Order> order_list;
+
+    // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
+    // Questo ci constringe però a fare il sort degli ordini dopo il caricamento (v. OrderParser::parse())
+    std::vector<Order> order_list;
     Fund fund;  //per la cassa utilizzo la classe cassa
+    double cash_amount;
     std::queue<Order> order_queue;  // coda degli ordini non ancora evasi
-    BatchPeriod batch_period;
+    BatchPeriod *batch_period;
+
+    bool can_produce();
+    void verify_supplies();
+    void enqueue_new_orders();
+    void process_batch();
 
 public:
-    BatchProcessor() : batch_period{-1, -1} {}
+    BatchProcessor() : cash_amount {0}, batch_period{nullptr} {}
 
     void load_components(const std::string &componentsFile);
     void load_models(const std::string &modelsFile);
+    void load_orders(const std::string &ordersFile);
+
     void set_cash_amount(double cashAmount){
         fund = Fund(cashAmount);
     }
@@ -35,17 +46,7 @@ public:
         return fund.get_cash();
     }
 
-    const BatchPeriod& get_batch_period() {
-        return batch_period;
-    }
-
-    void set_batch_period(BatchPeriod &batchPeriod) {
-        batch_period = batchPeriod;
-    }
-
-    void append_order(const Order &order);
-
-    void process_batch();
+    void start_production();
 };
 
 

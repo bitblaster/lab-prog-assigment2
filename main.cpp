@@ -9,6 +9,7 @@
 #include "Order.h"
 #include "BatchProcessor.h"
 #include "BatchPeriod.h"
+#include "Supply.h"
 
 using namespace parsers;
 
@@ -16,6 +17,7 @@ using namespace std;
 
 int main() {
 
+    // TODO controllare tutti i costruttori e le funzioni messi a "default" nei vari oggetti, vedere se default è standard su tutti i compilatori
      // NON VA BENE IL MODO CON CUI HO CREATO I PARSER, CON GLI OGGETTI MEMBRI RESTITUITI PER REFERENCE!!!
      // SE ESCONO FUORI SCOPE GLI OGGETTIPRINCIPALI PERDO ANCHE QUELLI FIGLI SE LI HO UTILIZZATI ESTERNAMENTE!!!
      // VEDERE SE RESTITUIRE SENZA REFERENCE (FORSE OTTIMIZZA CON NRVO) O SE USARE SMART POINTERS
@@ -46,50 +48,26 @@ int main() {
         BatchProcessor bp;
         bp.load_components("components_info.dat");
         bp.load_models("models.dat");
+        bp.load_orders("orders.dat");
 
-        double cashAmount;
+        set<Supply> ppp;
+        Component c1(12, "pippolo", 3, 1,2,3);
+        Component c2(14, "posdlo", 2, 1,2,3);
+        BatchPeriod b1(2, 2020);
+        BatchPeriod b2(3, 2020);
+        BatchPeriod b3(4, 2020);
 
-        // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
-        // Questo ci constringe però ad ordinare gli ordini dopo il caricamento (v. OrderParser::parse())
-        vector<Order> orders;
-        OrderParser op("orders.dat", cashAmount, orders);
-        op.parse();
+        ppp.insert(Supply(c1, b3, 4));
+        ppp.insert(Supply(c2, b1, 5));
+        ppp.insert(Supply(c1, b2, 6));
 
-        if(orders.size() > 0) {
-            bp.set_cash_amount(cashAmount);
-            cout << "Orders:" << endl;
-            for (const Order &order : orders) {
-                cout << order << endl;
-            }
-            cout<<"Cassa dispondibile: "<<bp.get_cash_amount();
-
-            queue<Order> orderQueue {};  // coda degli ordini non ancora evasi
-            // TODO: migliorare usando una funzione membro di Order tipo get_localtime, solo che mi dava leak per l'uso di localtime, quindi ho lasciato stare
-
-            // Prendiamo il primo e l'ultimo mese
-            time_t time = orders.begin()->get_timestamp();
-            tm minTime = *localtime(&time);
-            time = orders.begin()->get_timestamp();
-            tm maxTime = *localtime(&time);
-
-            BatchPeriod lastPeriod {maxTime.tm_mon, maxTime.tm_year};
-            bp.set_batch_period(BatchPeriod(minTime.tm_mon, minTime.tm_year););
-            int orderIndex=0;
-
-            // Cicliamo per tutti i mesi che intercorrono dal mese/anno del primo ordine al mese/anno dell'ultimo
-            // TODO bisogna tenere conto degli ordini elaborati l'ultimo mese non evadibili, che saranno evasi solo in mesi successivi, quando arrivano i componenti
-            while(bp.get_batch_period() <= lastPeriod) {
-
-                // Aggiunta alla coda ordini di questo mese
-                for (vector<Order>::iterator it = orders.begin(); it != orders.end() && (*it).in_period(bp.get_batch_period());  ++it) {
-                    bp.append_order(*it);
-                }
-
-
-                // Elaborazione del lotto corrente
-                bp.process_batch();
-            }
+        cout << ppp.size() << endl;
+        for (const Supply &s : ppp) {
+            cout << s.get_component().get_id() << " - " << s.get_delivery_period().get_month() << '/' << s.get_delivery_period().get_year() << " q:" << s.get_quantity() << endl;
         }
+
+        bp.start_production();
+
     } catch (ParsingException pe) {
         cout << "Error: " << pe.what() << endl << "Exiting..." << endl;
         return 1;
