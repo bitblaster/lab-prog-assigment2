@@ -39,8 +39,8 @@ class BatchProcessor {
     void verify_orders();         //controlla se gli ordini in coda sono realizzabili
     void process_order();          //processa l'ordine e lo evade
     void current_status();        //stampa dopo ogni ordine lo stato
-    void warehouse_status();      //stampa lo stato del magazzino;
     void add_processed_order(Order order);
+
 public:
     BatchProcessor() : cash_amount {0}, batch_period{nullptr}, warehouse{} {}
 

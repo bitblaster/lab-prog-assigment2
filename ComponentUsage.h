@@ -22,6 +22,9 @@ public:
     int get_quantity() const {
         return quantity;
     }
+    int get_componentUsageId() const{
+        return component.get_id();
+    }
 
     bool operator<(const ComponentUsage &rhs) const {
         return component.get_months_to_delivery() < rhs.component.get_months_to_delivery();

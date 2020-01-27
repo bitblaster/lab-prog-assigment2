@@ -7,6 +7,8 @@
 #include "parsers/ModelListParser.h"
 #include "BatchProcessor.h"
 #include "parsers/OrderParser.h"
+#include "Component.h"
+#include "ComponentUsage.h"
 
 
 using namespace std;
@@ -116,18 +118,32 @@ void BatchProcessor::current_status(){
 
 //TODO: CONTROLLA GLI ORDINI IN CODA, SE CI SONO COMPONENTI, IN CASO PRODURRE con process_order().
 void BatchProcessor::verify_orders() {
+   /* for(const Order& order : order_list){
+        int id = order.get_model_id();
+        int order_quantity = order.get_quantity();
+        bool components=true;
+        Model model = model_map.at(id);
+
+        for(const ComponentUsage& comp : model.get_components()){
+            Component component = component_map.at(comp.get_componentUsageId());
+            int component_quantity = comp.get_quantity();
+
+//            if(component_quantity*order_quantity <= warehouse.)
+
+        }
+    }
+*/
+}
+
+void BatchProcessor::process_order(){
+
 
 }
 
-void BatchProcessor::process_order() {
-
-}
-
-void BatchProcessor::warehouse_status() {
-
-}
 
 void BatchProcessor::add_processed_order(Order order) {
     if(order.is_processed()) processed_orders.push_back(order);
 }
+
+
 
