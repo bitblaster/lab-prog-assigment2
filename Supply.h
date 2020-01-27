@@ -15,7 +15,32 @@ class Supply {
     const BatchPeriod delivery_period;
     int quantity;
 
-    Supply(const Component &component, BatchPeriod &deliveryPeriod, int initialQuantity);
+public:
+    Supply(const Component &component, const BatchPeriod &deliveryPeriod, int initialQuantity);
+
+    const Component& get_component() const {
+        return component;
+    }
+
+    const BatchPeriod &get_delivery_period() const {
+        return delivery_period;
+    }
+
+    int get_quantity() const {
+        return quantity;
+    }
+
+    bool operator==(const Supply &rhs) const;
+
+    bool operator!=(const Supply &rhs) const;
+
+    bool operator<(const Supply &rhs) const;
+
+    bool operator>(const Supply &rhs) const;
+
+    bool operator<=(const Supply &rhs) const;
+
+    bool operator>=(const Supply &rhs) const;
 };
 
 
