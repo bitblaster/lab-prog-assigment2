@@ -23,11 +23,10 @@ class BatchProcessor {
     // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
     // Questo ci constringe però a fare il sort degli ordini dopo il caricamento (v. OrderParser::parse())
     std::vector<Order> order_list;
-    Fund fund;  //per la cassa utilizzo la classe cassa
-    double cash_amount;
     std::queue<Order> order_queue;  // coda degli ordini non ancora evasi
+    Fund fund;  // per la cassa utilizzo la classe cassa
+    double cash_amount;
     std::vector<Order> processed_orders; //ordini evasi;
-
     BatchPeriod *batch_period;
     std::set<Supply> supplies;    //set delle componenti in consegna
     Warehouse warehouse;
@@ -57,8 +56,6 @@ public:
     }
 
     void start_production();
-
-
 };
 
 

@@ -63,13 +63,20 @@ bool BatchProcessor::can_produce() {
     return true;
 }
 
+void BatchProcessor::verify_supplies() {
+    for (set<Supply>::iterator it = supplies.begin(); it != supplies.end();  ++it) {
+        if (it->get_delivery_period() == *batch_period) {
+            it = supplies.erase(it);
+        }
+    }
+}
+
 void BatchProcessor::enqueue_new_orders() {
     // Aggiunta alla coda ordini di questo mese
     for (vector<Order>::iterator it = order_list.begin(); it != order_list.end() && (*it).in_period(*batch_period);  ++it) {
         order_queue.push(*it);
     }
 }
-
 
 void BatchProcessor::start_production() {
     while (can_produce()){
