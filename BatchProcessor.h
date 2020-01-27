@@ -33,7 +33,7 @@ class BatchProcessor {
     Warehouse warehouse;
 
     bool can_produce();            //controllare se è possibile produrre
-    void verify_supplies();        //controlla le componenti ordinate se sono arrivate
+    void verify_supplies(const BatchPeriod *actualPeriod);        //controlla le componenti ordinate se sono arrivate
     void enqueue_new_orders();     //aggiunge in coda gli ordini arrivati questo mese
     void process_batch();         //avanza mese
     void verify_orders();         //controlla se gli ordini in coda sono realizzabili

@@ -71,7 +71,7 @@ void BatchProcessor::enqueue_new_orders() {
 
 void BatchProcessor::start_production() {
     while (can_produce()){
-        verify_supplies();
+        verify_supplies(batch_period);
         enqueue_new_orders();
         verify_orders();
         process_batch();
@@ -79,8 +79,18 @@ void BatchProcessor::start_production() {
 
 }
 
-//TODO: verifica le componenti in arrivo, se il mese corrente corrisponde con quello di arrivo le aggiungo a warehouse
-void BatchProcessor::verify_supplies() {
+//verifica le componenti in arrivo, se il mese corrente corrisponde con quello di arrivo le aggiungo a warehouse
+void BatchProcessor::verify_supplies(const BatchPeriod *actualPeriod) {
+    if(!supplies.empty()) {
+        BatchPeriod period = *actualPeriod;
+        for (const Supply &s : supplies) {
+            if (s.get_delivery_period() == period) {
+                warehouse.add(s.get_component(), s.get_quantity());
+                supplies.erase(s);
+            }
+        }
+        return;
+    }
 }
 
 void BatchProcessor::process_batch() {
@@ -88,7 +98,6 @@ void BatchProcessor::process_batch() {
     ++batch_period;
 }
 
- //TODO:FUNZIONE CHE STAMPA STATO ATTUALE DEL WAREHOUSE, SUPPLIES E ORDINE EVASI
 void BatchProcessor::current_status(){
     cout<<"Current status of: "<<endl<<endl;
 
