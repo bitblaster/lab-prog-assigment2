@@ -16,10 +16,9 @@ using namespace parsers;
 
 using namespace std;
 
-void orderSelection(string& order);
 class FileOrdersNotFound{};
 
-int main() {
+int main(int arg, char *argv[]) {
 
     // TODO controllare tutti i costruttori e le funzioni messi a "default" nei vari oggetti, vedere se default è standard su tutti i compilatori
      // NON VA BENE IL MODO CON CUI HO CREATO I PARSER, CON GLI OGGETTI MEMBRI RESTITUITI PER REFERENCE!!!
@@ -50,9 +49,17 @@ int main() {
 
 
     try {
-
         string orders;
-        orderSelection(orders);
+        if(arg >= 2)
+        {
+            orders = argv[1];
+            if(orders!= "orders1.dat" && orders!="orders2.dat" && orders!="orders3.dat" && orders!="orders4.dat"){
+                throw FileOrdersNotFound{};
+            }
+        }
+        else{
+            throw FileOrdersNotFound{};
+        }
 
         BatchProcessor bp;
         bp.load_components("components_info.dat");
@@ -88,13 +95,4 @@ int main() {
     return 0;
 
 }
-
-void orderSelection(string& order){
-    cout<<"Inserire il nome del file di ordine da eseguire nel formato 'orders<1/2/3/4>.dat': "<<endl;
-    string oo;
-    cin>>oo;
-    if(oo!= "orders1.dat" && oo!="orders2.dat" && oo!="orders3.dat" && oo!="orders4.dat") {throw FileOrdersNotFound{};};
-    order = oo;
-    return;
-};
 
