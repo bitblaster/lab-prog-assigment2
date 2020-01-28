@@ -14,7 +14,7 @@
 #include "BatchPeriod.h"
 #include "Fund.h"
 #include "Supply.h"
-#include "Warehouse.h"
+#include "Stock.h"
 
 class BatchProcessor {
     std::map<int, Component> component_map;
@@ -23,25 +23,25 @@ class BatchProcessor {
     // Usiamo un vettore di ordini anziché un set per supportare il caso in cui 2 ordini abbiano lo stesso timestamp
     // Questo ci constringe però a fare il sort degli ordini dopo il caricamento (v. OrderParser::parse())
     std::vector<Order> order_list;
-    std::queue<Order> order_queue;  // coda degli ordini non ancora evasi
+    std::list<Order> order_queue;  // coda degli ordini non ancora evasi
     Fund fund;  // per la cassa utilizzo la classe cassa
     double cash_amount;
     std::vector<Order> processed_orders; //ordini evasi;
     BatchPeriod *batch_period;
     std::set<Supply> supplies;    //set delle componenti in consegna
-    Warehouse warehouse;
+    Stock stock;
 
     bool can_produce();            //controllare se è possibile produrre
-    void verify_supplies(const BatchPeriod *actualPeriod);        //controlla le componenti ordinate se sono arrivate
+    void verify_supplies();        //controlla le componenti ordinate se sono arrivate
     void enqueue_new_orders();     //aggiunge in coda gli ordini arrivati questo mese
-    void process_batch();         //avanza mese
-    void verify_orders();         //controlla se gli ordini in coda sono realizzabili
-    void process_order();          //processa l'ordine e lo evade
+    void process_batch();         // esegue la produzione vera e propria del lotto per gli ordini evadibili
+    double check_missing_components_cost(Order &order);          // verifica quanto costano i componenti mancanti di un ordine
+    bool process_order(Order &order);          // processa l'ordine e lo evade
     void current_status();        //stampa dopo ogni ordine lo stato
     void add_processed_order(Order order);
 
 public:
-    BatchProcessor() : cash_amount {0}, batch_period{nullptr}, warehouse{} {}
+    BatchProcessor() : cash_amount {0}, batch_period{nullptr}, stock{} {}
 
     void load_components(const std::string &componentsFile);
     void load_models(const std::string &modelsFile);

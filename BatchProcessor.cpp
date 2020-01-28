@@ -63,10 +63,18 @@ bool BatchProcessor::can_produce() {
     return true;
 }
 
+// Verifica le componenti in arrivo, se il periodo corrente corrisponde con quello di arrivo aggiungiamo i componenti a magazzino
 void BatchProcessor::verify_supplies() {
     for (set<Supply>::iterator it = supplies.begin(); it != supplies.end();  ++it) {
         if (it->get_delivery_period() == *batch_period) {
+            stock
+            .add(it->get_component(), it->get_quantity());
             it = supplies.erase(it);
+        }
+        else if (it->get_delivery_period() > *batch_period) {
+            // Dato che supplies è ordinato per periodo di delivery crescente,
+            // se troviamo un elemento don periodo successivo al corrente possiamo uscire
+            break;
         }
     }
 }
@@ -74,38 +82,43 @@ void BatchProcessor::verify_supplies() {
 void BatchProcessor::enqueue_new_orders() {
     // Aggiunta alla coda ordini di questo mese
     for (vector<Order>::iterator it = order_list.begin(); it != order_list.end() && (*it).in_period(*batch_period);  ++it) {
-        order_queue.push(*it);
+        order_queue.push_back(*it);
     }
 }
 
 void BatchProcessor::start_production() {
     while (can_produce()){
-        verify_supplies(batch_period);
+        verify_supplies();
         enqueue_new_orders();
-        verify_orders();
         process_batch();
-    }
 
-}
-
-//verifica le componenti in arrivo, se il mese corrente corrisponde con quello di arrivo le aggiungo a warehouse
-void BatchProcessor::verify_supplies(const BatchPeriod *actualPeriod) {
-    if(!supplies.empty()) {
-        BatchPeriod period = *actualPeriod;
-        for (const Supply &s : supplies) {
-            if (s.get_delivery_period() == period) {
-                warehouse.add(s.get_component(), s.get_quantity());
-                supplies.erase(s);
-            }
-        }
-        return;
+        ++batch_period;
     }
 }
 
 void BatchProcessor::process_batch() {
-
-    ++batch_period;
+    for (list<Order>::iterator it = order_queue.begin(); it != order_queue.end(); ++it) {
+        double cash_needed = check_missing_components_cost(*it);
+        if(cash_needed <= cash_amount) {
+            bool processed = process_order(*it);
+            if (processed)
+                it = order_queue.erase(it);
+        }
+    }
 }
+
+double BatchProcessor::check_missing_components_cost(Order &order) {
+    double cost {0};
+
+
+    return cost;
+}
+
+
+bool BatchProcessor::process_order(Order &order) {
+    return false;
+}
+
 
 void BatchProcessor::current_status(){
     cout<<"Current status of: "<<endl<<endl;
@@ -115,7 +128,9 @@ void BatchProcessor::current_status(){
         cout << s.get_component().get_id() << " - " << s.get_delivery_period().get_month() << '/' << s.get_delivery_period().get_year() << " q:" << s.get_quantity() << endl;
     }
     cout<<endl<<"Magazzino: "<<endl;
-    cout<<warehouse;
+    for (const pair<int, StockItem> &element : stock.get_items()) {
+        cout << "   " << element.second << endl;
+    }
 
     cout<<endl<<"Ordini evasi: "<<endl;
     for(const Order& order : processed_orders){
@@ -123,34 +138,10 @@ void BatchProcessor::current_status(){
     }
 }
 
-//TODO: CONTROLLA GLI ORDINI IN CODA, SE CI SONO COMPONENTI, IN CASO PRODURRE con process_order().
-void BatchProcessor::verify_orders() {
-   /* for(const Order& order : order_list){
-        int id = order.get_model_id();
-        int order_quantity = order.get_quantity();
-        bool components=true;
-        Model model = model_map.at(id);
-
-        for(const ComponentUsage& comp : model.get_components()){
-            Component component = component_map.at(comp.get_componentUsageId());
-            int component_quantity = comp.get_quantity();
-
-//            if(component_quantity*order_quantity <= warehouse.)
-
-        }
-    }
-*/
-}
-
-void BatchProcessor::process_order(){
-
-
-}
-
-
 void BatchProcessor::add_processed_order(Order order) {
     if(order.is_processed()) processed_orders.push_back(order);
 }
+
 
 
 

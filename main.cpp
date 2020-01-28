@@ -20,6 +20,8 @@ class FileOrdersNotFound{};
 
 int main(int arg, char *argv[]) {
 
+    // TODO forse in tutti gli oggetti a parte quelli che hanno caricato gli oggettti possiamo usare reference_wrapper!!!
+
     // TODO controllare tutti i costruttori e le funzioni messi a "default" nei vari oggetti, vedere se default è standard su tutti i compilatori
      // NON VA BENE IL MODO CON CUI HO CREATO I PARSER, CON GLI OGGETTI MEMBRI RESTITUITI PER REFERENCE!!!
      // SE ESCONO FUORI SCOPE GLI OGGETTIPRINCIPALI PERDO ANCHE QUELLI FIGLI SE LI HO UTILIZZATI ESTERNAMENTE!!!

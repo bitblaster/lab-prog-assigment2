@@ -8,6 +8,7 @@ Supply::Supply(const Component &component, const BatchPeriod &deliveryPeriod, in
     quantity = initialQuantity > 0 ? initialQuantity : 0;
 }
 
+bool Supply::operator==(const Supply &rhs) const {
     return delivery_period == rhs.delivery_period && component.get_id() == rhs.component.get_id();
 }
 
