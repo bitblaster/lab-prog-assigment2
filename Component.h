@@ -28,7 +28,6 @@ constexpr int kQuantityThresholds[kQuantityThresholdCount] {11, 51};
  *  - month_to_delivery deve essere sempre > 0
  *
  */
-
 class Component : public Part {
     int months_to_delivery;
 
@@ -50,6 +49,6 @@ public:
     static unsigned int get_suggested_quantity(const unsigned int minimumQuantity);
 };
 
-std::ostream& operator << (std::ostream& stream, const Component& component);
+std::ostream& operator <<(std::ostream& stream, const Component& component);
 
 #endif //INC_COMPONENT_H

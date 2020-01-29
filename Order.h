@@ -6,6 +6,7 @@
 #define INC_ORDER_H
 
 #include <functional>
+#include <map>
 #include "Model.h"
 #include "Component.h"
 #include "BatchPeriod.h"
@@ -14,7 +15,7 @@ class Order {
     unsigned int timestamp;
     const std::shared_ptr<const Model> model;
     unsigned int quantity;
-    bool waiting_components;
+    std::map<int, int> reserved_components;
 
 public:
     Order(unsigned int timestamp, const std::shared_ptr<const Model> model, const unsigned int quantity);
@@ -31,13 +32,10 @@ public:
         return quantity;
     }
 
-    bool is_waiting_components() const {
-        return waiting_components;
-    }
+    bool is_component_fullfilled(const std::shared_ptr<const ComponentUsage> comp) const;
 
-    void set_waiting_components(bool val) {
-        waiting_components = val;
-    }
+    void add_reserved_quantity(const std::shared_ptr<const ComponentUsage> comp, unsigned int quantity);
+    unsigned int get_reserved_quantity(const std::shared_ptr<const ComponentUsage> comp) const;
 
     bool operator<(const Order &rhs) const {
         return timestamp < rhs.timestamp;

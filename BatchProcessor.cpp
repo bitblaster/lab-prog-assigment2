@@ -40,17 +40,21 @@ void BatchProcessor::load_orders(const string &ordersFile) {
     for (const auto &order : order_list) {
         cout << *order << endl;
     }
-    cout << "Cassa dispondibile: "<< cash_amount << endl;
+    cout << "Cassa disponibile: "<< cash_amount << endl;
     cout << "Lotto iniziale: " << batch_month << endl;
 }
 
 void BatchProcessor::start_production() {
     while (can_produce()) {
-        cout << "Inizio elaborazione lotto " << batch_month << endl;
+        cout << "Preparazione lotto " << batch_month << ", ordini precedenti in coda: " << order_queue.size() << endl;
         verify_supplies();
         enqueue_new_orders();
+        cout << "Stato prima del lotto:" << endl;
+        print_current_status();
         process_batch();
 
+        cout << "Stato alla fine del lotto:" << endl;
+        print_current_status();
         ++batch_month;
     }
 }
@@ -77,7 +81,7 @@ bool BatchProcessor::can_produce() const {
 void BatchProcessor::verify_supplies() {
     // Dato che supplies è ordinato per periodo di delivery crescente,
     // se troviamo un elemento don periodo successivo al corrente possiamo uscire
-    for (auto it = supplies.begin(); it != supplies.end() && it->second->get_delivery_period() == batch_month;  it = supplies.erase(it)) {
+    for (auto it = supplies.begin(); it != supplies.end() && it->second->get_delivery_period() <= batch_month;  it = supplies.erase(it)) {
         stock.add(it->second->get_component(), it->second->get_quantity());
     }
 }
@@ -91,7 +95,10 @@ void BatchProcessor::enqueue_new_orders() {
 }
 
 void BatchProcessor::process_batch() {
-    for (auto it = order_queue.begin(); it != order_queue.end(); ++it) {
+    cout << "Inizio produzione lotto " << batch_month << ", ordini in coda: " << order_queue.size() << endl;
+
+    auto it = order_queue.begin();
+    while (it != order_queue.end()) {
         double cash_needed = process_missing_components(*it, false);
         if(cash_needed <= cash_amount) {
             if(cash_needed <= 0) {
@@ -114,50 +121,66 @@ void BatchProcessor::process_batch() {
     }
 }
 
-//TODO commentare
+//TODO per adesso ordina tuttti i componenti in un colpo solo, iondipendentemente dalla data di delivery
 double BatchProcessor::process_missing_components(const std::shared_ptr<Order> order, bool processSupplies) {
-    if(order->is_waiting_components())
-        return 0;
-
     double cost {0};
     const Model &model = *order->get_model();
 
     for(shared_ptr<const ComponentUsage> compUsage : model.get_components()) {
+        // se il componente è già stato riservato possiamo saltarlo
+        if (order->is_component_fullfilled(compUsage))
+            continue;
+
         const shared_ptr<const Component> comp = compUsage->get_component();
-        unsigned int quantityNeeded = compUsage->get_quantity() * order->get_quantity();
-        unsigned quantityAvailable = processSupplies ? stock.reserve(comp, quantityNeeded) : stock.get_availability(comp);
-        if (quantityNeeded > quantityAvailable) {
-            // Calcoliamo il costo dell'acquisto della quantità necessaria, tenendo conto anche di eventuali
-            // forniture già richieste questo mese e cercando di ottimizzare la quantità per avere un prezzo più basso
+        unsigned int quantityNeeded = compUsage->get_quantity() * order->get_quantity() - order->get_reserved_quantity(compUsage);
 
-            int targetDeliveryMonth = batch_month + comp->get_months_to_delivery();
-            map<supply_key, unique_ptr<Supply>>::iterator it = supplies.find(supply_key(targetDeliveryMonth, comp));
-            if(it != supplies.end()) {
-                // Esiste una fornitura precedente, di cui aumenteremo la quantità
-                Supply &previousSupply { *(it->second) };
-                //const unique_ptr<Supply> &previousSupply {supplies.at(supply_key(comp.get_id(), 1))};
-                unsigned int quantityOfOngoingSupply = previousSupply.get_quantity();
-                double costOfOngoingSupply = comp->get_price(quantityOfOngoingSupply);
-                // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
-                unsigned int suggestedQuantity = Component::get_suggested_quantity(quantityOfOngoingSupply + quantityNeeded);
-                cost += comp->get_price(suggestedQuantity) - costOfOngoingSupply;
-
-                if(processSupplies)
-                    previousSupply.add_quantity(suggestedQuantity - quantityOfOngoingSupply);
+        // Verifica la disponibilità di magazzino e riserva dei componenti se stiamo processSupplies == true
+        if(quantityNeeded > 0) {
+            unsigned quantityAvailable = 0;
+            if (processSupplies) {
+                quantityAvailable = stock.reserve(comp, quantityNeeded);
+                order->add_reserved_quantity(compUsage, quantityAvailable);
             } else {
-                // Nessuna fornitura precedente trovata, ne creiamo una nuova
-                // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
-                unsigned int suggestedQuantity = Component::get_suggested_quantity(quantityNeeded);
-                cost += comp->get_price(suggestedQuantity);
+                quantityAvailable = stock.get_availability(comp);
+            }
 
-                if(processSupplies)
-                    supplies[supply_key(targetDeliveryMonth, comp)] = make_unique<Supply>(comp, targetDeliveryMonth, suggestedQuantity);
+            if (quantityNeeded > quantityAvailable) {
+                // Calcoliamo il costo dell'acquisto della quantità necessaria, tenendo conto anche di eventuali
+                // forniture già richieste questo mese e cercando di ottimizzare la quantità per avere un prezzo più basso
+
+                int targetDeliveryMonth = batch_month + comp->get_months_to_delivery();
+                map<supply_key, unique_ptr<Supply>>::iterator it = supplies.find(supply_key(targetDeliveryMonth, comp));
+                if (it != supplies.end()) {
+                    // Esiste una fornitura precedente, di cui aumenteremo la quantità
+                    Supply &previousSupply{*(it->second)};
+                    //const unique_ptr<Supply> &previousSupply {supplies.at(supply_key(comp.get_id(), 1))};
+                    unsigned int quantityOfOngoingSupply = previousSupply.get_quantity();
+                    double costOfOngoingSupply = comp->get_price(quantityOfOngoingSupply);
+                    // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
+                    unsigned int suggestedQuantity = Component::get_suggested_quantity(
+                            quantityOfOngoingSupply + quantityNeeded);
+                    cost += comp->get_price(suggestedQuantity) - costOfOngoingSupply;
+
+                    // Effettua un'integrazione della richiesta di fornitura del lotto corrente, solo se non fatto in un lotto precedente
+                    if (processSupplies)
+                        previousSupply.add_quantity(suggestedQuantity - quantityOfOngoingSupply);
+                } else {
+                    // Nessuna fornitura precedente trovata, ne creiamo una nuova
+                    // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
+                    unsigned int suggestedQuantity = Component::get_suggested_quantity(quantityNeeded);
+                    cost += comp->get_price(suggestedQuantity);
+
+                    // Effettua una nuova richiesta di fornitura solo se non fatto in un lotto precedente
+                    if (processSupplies)
+                        supplies[supply_key(targetDeliveryMonth, comp)] = make_unique<Supply>(comp, targetDeliveryMonth,
+                                                                                              suggestedQuantity);
+                }
             }
         }
     }
 
+    // Scala il denaro dalla cassa
     if(processSupplies) {
-        order->set_waiting_components(true);
         cash_amount -= cost;
     }
     return cost;
@@ -182,20 +205,43 @@ void BatchProcessor::print_current_status() const {
     cout << "------- STATO CORRENTE PRODUZIONE -------" << endl << endl;
 
     cout << "Acquisti effettuati: " << endl;
-    for (auto &s : supplies) {
-        cout << "   Componente: " << s.second->get_component() << ", mese consegna prevista: " << s.second->get_delivery_period() << ", quantità: " << s.second->get_quantity() << endl;
+    if (supplies.empty())
+        cout << "   Nessuno" << endl;
+    else {
+        for (auto &s : supplies) {
+            cout << "   Componente: " << *s.second->get_component() << ", mese consegna prevista: "
+                 << s.second->get_delivery_period() << ", quantità: " << s.second->get_quantity() << endl;
+        }
     }
     cout << endl;
 
     cout << "Magazzino: "<< endl;
-    for (auto &item : stock.get_items()) {
-        cout << "   " << *item.second << endl;
+    if (stock.get_items().empty())
+        cout << "   Nessuno" << endl;
+    else {
+        for (auto &item : stock.get_items()) {
+            cout << "   " << *item.second << endl;
+        }
     }
-
     cout << endl;
+
     cout << "Ordini evasi: " << endl;
-    for(auto &order : processed_orders){
-        cout << order << endl;
+    if (processed_orders.empty())
+        cout << "   Nessuno" << endl;
+    else {
+        for (auto &order : processed_orders) {
+            cout << "   " << *order << endl;
+        }
+    }
+    cout << endl;
+
+    cout << "Ordini in coda: " << endl;
+    if (order_queue.empty())
+        cout << "   Nessuno" << endl;
+    else {
+        for (auto &order : order_queue) {
+            cout << "   " << *order << endl;
+        }
     }
 }
 

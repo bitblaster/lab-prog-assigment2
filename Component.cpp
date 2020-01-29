@@ -31,6 +31,6 @@ double Component::get_price(const unsigned int quantity) const {
 }
 
 ostream& operator <<(ostream& stream, const Component& component) {
-    stream << component.get_id() << ',' << component.get_name();
+    stream << component.get_id() << ", " << component.get_name();
     return stream;
 }
