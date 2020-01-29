@@ -35,25 +35,19 @@ class Component : public Part {
     /** Prezzi corrispondenti alle diverse soglie di quantità */
     double prices[kQuantityThresholdCount+1];
 public:
-    Component() = default;
-    Component(int id, std::string name, int months_to_delivery, double price_1, double price_2 , double price_3)
-        : Part(id, name) , months_to_delivery {months_to_delivery}, prices {price_1, price_2, price_3} {}
+    Component(int id, std::string name, int months_to_delivery, double price_1, double price_2 , double price_3);
 
     int get_months_to_delivery() const {
         return months_to_delivery;
     }
+
 /*
  * Data la quantità di componenti da acquistare, passata come parametro int, ritorna il corrispondente prezzo/componente,
  * nel caso venga passata una quantità <=0 viete tornato il valore -1
  */
-    double get_price(const int quantity) const;
-
-    void set_price(const unsigned int quantity) {
-        months_to_delivery = quantity;
-    }
+    double get_price(const unsigned int quantity) const;
 
     static unsigned int get_suggested_quantity(const unsigned int minimumQuantity);
-    //Component& operator=(const Component &) = default;
 };
 
 std::ostream& operator << (std::ostream& stream, const Component& component);

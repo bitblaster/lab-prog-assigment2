@@ -11,16 +11,8 @@ using namespace std;
 
 namespace parsers {
 
-    ModelParser::ModelParser(std::string fileName, std::map<int, std::shared_ptr<const Model>> &modelMap, const std::map<int, std::shared_ptr<const Component>> &componentMap)
-            : FileParser{fileName}, parsed_model{nullptr}, model_map(modelMap), component_map{componentMap}  {
-
-    }
-
-    ModelParser::~ModelParser() {
-        //delete parsed_model;
-        //parsed_model = nullptr;
-    }
-
+    ModelParser::ModelParser(string fileName, map<int, shared_ptr<const Model>> &modelMap, const map<int, shared_ptr<const Component>> &componentMap)
+            : FileParser{fileName}, parsed_model{nullptr}, model_map(modelMap), component_map{componentMap}  { }
 
     void ModelParser::parse_row(const int line, const std::vector<std::string> &parsedFields) {
         if (parsedFields.size() != 3)

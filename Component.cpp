@@ -7,6 +7,9 @@
 
 using namespace std;
 
+Component::Component(int id, string name, int months_to_delivery, double price_1, double price_2, double price_3)
+        : Part(id, name) , months_to_delivery {months_to_delivery}, prices {price_1, price_2, price_3} { }
+
 unsigned int Component::get_suggested_quantity(const unsigned int minimumQuantity) {
     for (int threshold : kQuantityThresholds) {
         if(minimumQuantity < threshold) {

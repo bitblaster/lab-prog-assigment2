@@ -9,6 +9,9 @@
 using namespace std;
 
 namespace parsers {
+    ModelListParser::ModelListParser(const string &fileName, map<int, shared_ptr<const Model>> &modelMap, const map<int, shared_ptr<const Component>> &componentMap)
+            : FileParser{fileName}, model_map{modelMap}, component_map{componentMap} { }
+
     void ModelListParser::parse_row(const int line, const std::vector<std::string> &parsedFields) {
         if (parsedFields.size() != 1)
             throw ParsingException(parsedFileName, line);

@@ -5,25 +5,21 @@
 #ifndef INC_PARSERS_FILEPARSER_H
 #define INC_PARSERS_FILEPARSER_H
 
+#include <utility>
 #include <vector>
 #include <string>
 
 namespace parsers {
     class FileParser {
     protected:
-        bool successfulParsing {false};
         const std::string parsedFileName;
 
-        virtual void parse_row(const int line, const std::vector<std::string> &parsedFields) = 0;
+        virtual void parse_row(int line, const std::vector<std::string> &parsedFields) = 0;
 
     public:
-        FileParser(const std::string &fileName) : parsedFileName{fileName} {}
+        FileParser(std::string fileName) : parsedFileName{ std::move(fileName) } {}
 
         virtual void parse();
-
-        bool get_successful_parsing() {
-            return successfulParsing;
-        }
     };
 
 
@@ -32,13 +28,11 @@ namespace parsers {
 
     public:
         ParsingException(const std::string &msg) : message {msg} {}
-        ParsingException(const std::string &fileName, const int line) :
-                message {"Errore di parsing nel file '" + fileName + "', linea " + std::to_string(line)} {}
+        ParsingException(const std::string &fileName, const int line);
 
-        const char * what () const throw () {
+        const char* what() const throw() override {
             return message.c_str();
         }
-
     };
 }
 

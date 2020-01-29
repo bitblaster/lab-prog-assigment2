@@ -14,11 +14,10 @@ namespace parsers {
         std::map<int, std::shared_ptr<const Model>> &model_map;
         const std::map<int, std::shared_ptr<const Component>> &component_map;
     protected:
-        void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
+        void parse_row(int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        ModelListParser(const std::string &fileName, std::map<int, std::shared_ptr<const Model>> &modelMap, const std::map<int, std::shared_ptr<const Component>> &componentMap)
-                : FileParser{fileName}, model_map{modelMap}, component_map{componentMap} { }
+        ModelListParser(const std::string &fileName, std::map<int, std::shared_ptr<const Model>> &modelMap, const std::map<int, std::shared_ptr<const Component>> &componentMap);
     };
 }
 

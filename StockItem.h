@@ -6,31 +6,32 @@
 #define INC_STOCK_ITEM_H
 
 #include <ostream>
+#include <utility>
 #include "Component.h"
 
 class StockItem {
-    std::shared_ptr<const Component> component;
+    const std::shared_ptr<const Component> component;
     unsigned int quantity;
     unsigned int availability;
 
 public:
-    StockItem(std::shared_ptr<const Component> component, unsigned int quantity) : component{component}, quantity{quantity}, availability{quantity} {}
+    StockItem(std::shared_ptr<const Component> component, unsigned int quantity) : component{ std::move(component) }, quantity{quantity}, availability{quantity} {}
 
     const std::shared_ptr<const Component> get_component() const {
         return component;
     }
 
-    int get_quantity() const {
+    unsigned int get_quantity() const {
         return quantity;
     }
 
-    int get_availability() const {
+    unsigned int get_availability() const {
         return availability;
     }
 
-    void add(const int q);
-    int reserve(const int q);
-    void remove(const int q);
+    void add(unsigned int q);
+    int reserve(unsigned int q);
+    void remove(unsigned int q);
 };
 
 std::ostream& operator <<(std::ostream& stream, const StockItem& item);

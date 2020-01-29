@@ -16,14 +16,13 @@ using namespace parsers;
 
 using namespace std;
 
-class FileOrdersNotFound{};
 
 // TODO verificare inizializzazione di tutti i membri e rimuovere costruttori di default
 // TODO rinominare BatchProcessor in Production
  // TODO mettere namespace alle classi!
 // todo aggiungere commenti throws nelle funzioni che possono lanciare eccezioni
 //TODO verificare che funziona ordinamento ordini
-int main(int arg, char *argv[]) {
+int main(int argc, char *argv[]) {
 //    shared_ptr<Component> c1 { make_shared<Component>(12, "pippolo", 3, 1,2,3)};
 //    shared_ptr<Component> c2 { make_shared<Component>(14, "posdlo", 2, 1,2,3)};
 //
@@ -65,40 +64,30 @@ int main(int arg, char *argv[]) {
                 // (la classe che gestisce l'acquisto eventualmente aggiunge a un acquisto dello stesso componente nello mese la nuova quantità
 
 
-    try {
-        string orders;
-        if(arg >= 2)
-        {
-            orders = argv[1];
-            if(orders!= "orders1.dat" && orders!="orders2.dat" && orders!="orders3.dat" && orders!="orders4.dat"){
-                throw FileOrdersNotFound{};
-            }
-        }
-        else{
-            throw FileOrdersNotFound{};
-        }
+    if(argc < 2) {
+        cout << "È necessario specificare il file degli ordini\nUso: produzione <file-ordine.dat>" << endl;
+        return 1;
+    }
 
+    try {
         BatchProcessor bp;
         bp.load_components("components_info.dat");
         bp.load_models("models.dat");
-        bp.load_orders(orders);
 
-        set<Supply> ppp;
-        Component c1(12, "pippolo", 3, 1,2,3);
-        Component c2(14, "posdlo", 2, 1,2,3);
-
-        cout << ppp.size() << endl;
-        for (const Supply &s : ppp) {
-            cout << s.get_component()->get_id() << " - " << s.get_delivery_period() << " q:" << s.get_quantity() << endl;
-        }
-
+        bp.load_orders(argv[1]);
         bp.start_production();
+
+//        set<Supply> ppp;
+//        Component c1(12, "pippolo", 3, 1,2,3);
+//        Component c2(14, "posdlo", 2, 1,2,3);
+//
+//        cout << ppp.size() << endl;
+//        for (const Supply &s : ppp) {
+//            cout << s.get_component()->get_id() << " - " << s.get_delivery_period() << " q:" << s.get_quantity() << endl;
+//        }
 
     } catch (ParsingException pe) {
         cout << "Error: " << pe.what() << endl << "Exiting..." << endl;
-        return 1;
-    }catch (FileOrdersNotFound){
-        cout<<"File order inserito non valido o non trovato,devi inserirne uno tra quelli indicati"<<endl<< "Exiting..."<< endl;
         return 1;
     }
 

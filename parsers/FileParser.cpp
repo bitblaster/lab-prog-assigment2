@@ -35,4 +35,7 @@ namespace parsers {
             parse_row(lineNum, tokens);
         }
     }
+
+    ParsingException::ParsingException(const std::string &fileName, const int line) :
+            message {"Errore di parsing nel file '" + fileName + "', linea " + std::to_string(line)} {}
 }

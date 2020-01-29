@@ -33,7 +33,7 @@ public:
         return component;
     }
 
-    const std::string get_name_in_model() const {
+    const std::string& get_name_in_model() const {
         return name_in_model;
     }
 

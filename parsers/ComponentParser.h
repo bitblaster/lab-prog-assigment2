@@ -15,10 +15,10 @@ namespace parsers {
         std::map<int, std::shared_ptr<const Component>> &component_map;
 
     protected:
-        void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
+        void parse_row(int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        ComponentParser(const std::string &fileName, std::map<int, std::shared_ptr<const Component>> &componentMap) : FileParser{fileName}, component_map{componentMap} { }
+        ComponentParser(const std::string &fileName, std::map<int, std::shared_ptr<const Component>> &componentMap);
     };
 }
 

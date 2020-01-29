@@ -17,7 +17,7 @@ class Order {
     bool waiting_components;
 
 public:
-    Order(unsigned int timestamp, const std::shared_ptr<const Model> model, const unsigned int quantity) : timestamp{timestamp}, model{model}, quantity{quantity}, waiting_components{false} {};
+    Order(unsigned int timestamp, const std::shared_ptr<const Model> model, const unsigned int quantity);
 
     unsigned int get_timestamp() const {
         return timestamp;

@@ -6,7 +6,10 @@
 
 using namespace std;
 
+Model::Model(const int id, const string name, const double price)
+    : Part(id, name), price {price}, components(), max_delivery_months {0} { }
+
 ostream& operator <<(ostream& stream, const Model& model) {
-    stream << "Id modello: " << model.get_id() << ", nome: " << model.get_name() << ", prezzo:" << model.get_price() << ", num componenti:" << model.get_components().size();
+    stream << "id modello: " << model.get_id() << ", nome: " << model.get_name() << ", prezzo:" << model.get_price() << ", num componenti:" << model.get_components().size();
     return stream;
 }

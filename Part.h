@@ -6,13 +6,14 @@
 #define INC_PART_H
 
 #include <string>
+#include <utility>
 
 class Part {
 protected:
     int id;
     std::string name;
 
-    Part(const int entity_id, const std::string &entity_name) : id {entity_id}, name {entity_name} {}
+    Part(int entity_id, std::string entity_name) : id {entity_id}, name { std::move(entity_name) } {}
 
 public:
     int get_id() const {

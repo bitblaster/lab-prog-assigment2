@@ -5,12 +5,12 @@
 #include "Stock.h"
 #include "StockItem.h"
 
-void StockItem::add(const int q) {
+void StockItem::add(const unsigned int q) {
     quantity += q;
     availability += q;
 }
 
-int StockItem::reserve(const int q) {
+int StockItem::reserve(const unsigned int q) {
     if (availability > q) {
         availability -= q;
         return q;
@@ -21,7 +21,7 @@ int StockItem::reserve(const int q) {
     return tmp;
 }
 
-void StockItem::remove(const int q) {
+void StockItem::remove(const unsigned int q) {
     if (quantity < q) {
         throw Stock::OutOfStock();
     }

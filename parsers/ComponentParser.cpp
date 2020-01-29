@@ -8,6 +8,9 @@
 using namespace std;
 
 namespace parsers {
+    ComponentParser::ComponentParser(const string &fileName, map<int, shared_ptr<const Component>> &componentMap)
+            : FileParser{fileName}, component_map{componentMap} { }
+
     void ComponentParser::parse_row(const int line, const vector<string> &parsedFields) {
         if (parsedFields.size() != 6)
             throw ParsingException(parsedFileName, line);

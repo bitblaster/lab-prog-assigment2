@@ -19,7 +19,7 @@ class Model : public Part {
     unsigned int max_delivery_months;
 
 public:
-    Model(const int id, const std::string name, const double price) : Part(id, name), price {price}, components(), max_delivery_months {0} {}
+    Model(const int id, const std::string name, const double price);
 
     double get_price() const {
         return price;
@@ -44,6 +44,6 @@ public:
     Model& operator=(Model&&) = default;
 };
 
-std::ostream& operator << (std::ostream& stream, const Model& model);
+std::ostream& operator<<(std::ostream& stream, const Model& model);
 
 #endif //INC_MODEL_H
