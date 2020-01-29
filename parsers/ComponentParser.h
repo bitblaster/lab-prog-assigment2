@@ -6,20 +6,19 @@
 #define INC_PARSERS_COMPONENTPARSER_H
 
 #include <map>
+#include <memory>
 #include "FileParser.h"
 #include "../Component.h"
 
 namespace parsers {
     class ComponentParser : public FileParser {
-        std::map<int, Component> &component_map;
+        std::map<int, std::shared_ptr<const Component>> &component_map;
 
     protected:
         void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        ComponentParser(const std::string &fileName, std::map<int, Component> &componentMap) : FileParser{fileName}, component_map{componentMap} {
-            component_map.clear();
-        }
+        ComponentParser(const std::string &fileName, std::map<int, std::shared_ptr<const Component>> &componentMap) : FileParser{fileName}, component_map{componentMap} { }
     };
 }
 

@@ -5,7 +5,9 @@
 #ifndef INC_PARSERS_ORDERPARSER_H
 #define INC_PARSERS_ORDERPARSER_H
 
-#include <vector>
+#include <list>
+#include <map>
+#include <memory>
 #include "FileParser.h"
 #include "../Component.h"
 #include "../Order.h"
@@ -13,17 +15,15 @@
 namespace parsers {
     class OrderParser : public FileParser {
         double &cash_amount;
-        std::vector<Order> &parsed_orders;
+        std::list<std::shared_ptr<const Order>> &parsed_orders;
+        const std::map<int, std::shared_ptr<const Model>> model_map;
 
     protected:
         void parse_row(const int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        OrderParser(std::string fileName, double &cashAmount, std::vector<Order> &parsedOrders) : FileParser{fileName}, cash_amount{cashAmount}, parsed_orders(parsedOrders) {
-            parsed_orders.clear();
-        }
-
-        void parse() override;
+        OrderParser(std::string fileName, double &cashAmount, std::list<std::shared_ptr<const Order>> &parsedOrders, const std::map<int, std::shared_ptr<const Model>> modelMap)
+                : FileParser{fileName}, cash_amount{cashAmount}, parsed_orders(parsedOrders), model_map{modelMap} { }
     };
 }
 

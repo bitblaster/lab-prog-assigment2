@@ -18,9 +18,24 @@ using namespace std;
 
 class FileOrdersNotFound{};
 
+// TODO verificare inizializzazione di tutti i membri e rimuovere costruttori di default
+// TODO rinominare BatchProcessor in Production
+ // TODO mettere namespace alle classi!
+// todo aggiungere commenti throws nelle funzioni che possono lanciare eccezioni
+//TODO verificare che funziona ordinamento ordini
 int main(int arg, char *argv[]) {
-
-    // TODO forse in tutti gli oggetti a parte quelli che hanno caricato gli oggettti possiamo usare reference_wrapper!!!
+//    shared_ptr<Component> c1 { make_shared<Component>(12, "pippolo", 3, 1,2,3)};
+//    shared_ptr<Component> c2 { make_shared<Component>(14, "posdlo", 2, 1,2,3)};
+//
+//    map<supply_key, int> m;
+//    m[supply_key(12,c1)]=2;
+//    m[supply_key(3,c2)]=76;
+//
+//    for (auto it = m.begin(); it != m.end();  ++it) {
+//        cout << it->first.first << ',' << it->first.second << ',' << it->second << endl;
+//    }
+//    cout << endl;
+    // TODO forse in tutti gli oggetti a parte quelli che hanno caricato gli oggetti possiamo usare reference_wrapper!!!
 
     // TODO controllare tutti i costruttori e le funzioni messi a "default" nei vari oggetti, vedere se default è standard su tutti i compilatori
      // NON VA BENE IL MODO CON CUI HO CREATO I PARSER, CON GLI OGGETTI MEMBRI RESTITUITI PER REFERENCE!!!
@@ -71,17 +86,10 @@ int main(int arg, char *argv[]) {
         set<Supply> ppp;
         Component c1(12, "pippolo", 3, 1,2,3);
         Component c2(14, "posdlo", 2, 1,2,3);
-        BatchPeriod b1(2, 2020);
-        BatchPeriod b2(3, 2020);
-        BatchPeriod b3(4, 2020);
-
-        ppp.insert(Supply(c1, b3, 4));
-        ppp.insert(Supply(c2, b1, 5));
-        ppp.insert(Supply(c1, b2, 6));
 
         cout << ppp.size() << endl;
         for (const Supply &s : ppp) {
-            cout << s.get_component().get_id() << " - " << s.get_delivery_period().get_month() << '/' << s.get_delivery_period().get_year() << " q:" << s.get_quantity() << endl;
+            cout << s.get_component()->get_id() << " - " << s.get_delivery_period() << " q:" << s.get_quantity() << endl;
         }
 
         bp.start_production();

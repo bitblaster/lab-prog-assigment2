@@ -33,7 +33,7 @@ namespace parsers {
     public:
         ParsingException(const std::string &msg) : message {msg} {}
         ParsingException(const std::string &fileName, const int line) :
-                message {"Parsing error in file '" + fileName + "' at line " + std::to_string(line)} {}
+                message {"Errore di parsing nel file '" + fileName + "', linea " + std::to_string(line)} {}
 
         const char * what () const throw () {
             return message.c_str();

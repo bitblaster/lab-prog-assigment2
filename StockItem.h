@@ -9,16 +9,15 @@
 #include "Component.h"
 
 class StockItem {
-    int componentId;
-    int quantity;
-    int availability;
+    std::shared_ptr<const Component> component;
+    unsigned int quantity;
+    unsigned int availability;
 
 public:
-    StockItem() = default;
-    StockItem(const Component &comp, const int quantity) : componentId{comp.get_id()}, quantity{quantity}, availability{quantity} {}
+    StockItem(std::shared_ptr<const Component> component, unsigned int quantity) : component{component}, quantity{quantity}, availability{quantity} {}
 
-    int get_component_id() const {
-        return componentId;
+    const std::shared_ptr<const Component> get_component() const {
+        return component;
     }
 
     int get_quantity() const {

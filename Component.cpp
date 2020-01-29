@@ -7,21 +7,24 @@
 
 using namespace std;
 
-double Component::get_price(const int quantity) const {
-    if(quantity <= 0){
-            return -1;
-    }
-    else{
-        if(quantity <= 10) {
-            return price_1;
-        }
-        if(10 < quantity <= 50) {
-            return price_2;
-        }
-        if(quantity > 50) {
-            return price_3;
+unsigned int Component::get_suggested_quantity(const unsigned int minimumQuantity) {
+    for (int threshold : kQuantityThresholds) {
+        if(minimumQuantity < threshold) {
+            if (minimumQuantity > threshold - kQuantityTolerance)
+                return threshold;
+            break;
         }
     }
+
+    return minimumQuantity;
+}
+
+double Component::get_price(const unsigned int quantity) const {
+    for (int i=0; i<kQuantityThresholdCount; i++) {
+        if(quantity < kQuantityThresholds[i])
+            return prices[i];
+    }
+    return prices[kQuantityThresholdCount];
 }
 
 ostream& operator <<(ostream& stream, const Component& component) {

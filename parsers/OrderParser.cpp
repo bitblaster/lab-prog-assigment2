@@ -24,26 +24,16 @@ namespace parsers {
                 throw ParsingException(parsedFileName, line);
             }
         } else {
-            tm orderTime {};
-            stringstream ss(parsedFields[0]);
-            ss >> get_time(&orderTime, "%Y-%m-%d_%H:%M:%S");
-            if (ss.fail())
-                throw ParsingException(parsedFileName, line);
-
             try {
-                int modelId{stoi(parsedFields[1])};
-                int quantity = {stoi(parsedFields[2])};
-                parsed_orders.push_back(Order(mktime(&orderTime), modelId, quantity));
+                int orderTime {stoi(parsedFields[0])};
+                int modelId {stoi(parsedFields[1])};
+                unsigned int quantity {static_cast<unsigned int>(stoi(parsedFields[2]))};
+                parsed_orders.push_back(make_shared<Order>(orderTime, model_map.at(modelId), quantity));
+            } catch (out_of_range e) {
+                throw ParsingException("Error loading order at line " + to_string(line) + ": no model loaded with id: " + parsedFields[1]);
             } catch (exception e) {
                 throw ParsingException(parsedFileName, line);
             }
         }
-    }
-
-    void OrderParser::parse() {
-        FileParser::parse();
-
-        // Alla fine del parsing ordiniamo gli ordini per timestamp (v. operator < di Order)
-        sort(parsed_orders.begin(), parsed_orders.end());
     }
 }

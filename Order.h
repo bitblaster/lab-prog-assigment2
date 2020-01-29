@@ -5,41 +5,39 @@
 #ifndef INC_ORDER_H
 #define INC_ORDER_H
 
-#include <chrono>
+#include <functional>
 #include "Model.h"
 #include "Component.h"
 #include "BatchPeriod.h"
 
 class Order {
-    std::time_t timestamp;
-    int model_id;
-    int quantity;
-    bool processed;
+    unsigned int timestamp;
+    const std::shared_ptr<const Model> model;
+    unsigned int quantity;
+    bool waiting_components;
 
 public:
-    Order(const std::time_t timestamp, const int model_id, const int quantity) : timestamp{timestamp}, model_id{model_id}, quantity{quantity} {};
+    Order(unsigned int timestamp, const std::shared_ptr<const Model> model, const unsigned int quantity) : timestamp{timestamp}, model{model}, quantity{quantity}, waiting_components{false} {};
 
-    const std::time_t get_timestamp() const {
+    unsigned int get_timestamp() const {
         return timestamp;
     }
 
-    int get_model_id() const{
-        return model_id;
+    const std::shared_ptr<const Model> get_model() const{
+        return model;
     }
 
-    int get_quantity() const{
+    unsigned int get_quantity() const{
         return quantity;
     }
 
-    bool is_processed() {
-        return processed;
+    bool is_waiting_components() const {
+        return waiting_components;
     }
 
-    void set_processed(bool val) {
-        processed = val;
+    void set_waiting_components(bool val) {
+        waiting_components = val;
     }
-
-    bool in_period(const BatchPeriod period) const;
 
     bool operator<(const Order &rhs) const {
         return timestamp < rhs.timestamp;

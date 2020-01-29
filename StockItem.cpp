@@ -30,7 +30,7 @@ void StockItem::remove(const int q) {
 }
 
 std::ostream& operator<<(std::ostream &stream, const StockItem &item) {
-    stream << "Componente: " << item.get_component_id() << ", quantità: " << item.get_quantity() << ", disponibilità: " << item.get_availability();
+    stream << "Componente: " << *item.get_component() << ", quantità: " << item.get_quantity() << ", disponibilità: " << item.get_availability();
 
     return stream;
 }

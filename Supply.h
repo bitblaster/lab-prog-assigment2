@@ -6,28 +6,33 @@
 #define INC_SUPPLY_H
 
 
+#include <memory>
 #include "Component.h"
 #include "BatchPeriod.h"
 
 // TODO capire come fare un set di supply in cui ;la chiave sia la combinazione di componente e batchperiod!
 class Supply {
-    const Component &component;
-    const BatchPeriod delivery_period;
-    int quantity;
+    std::shared_ptr<const Component> component;
+    const unsigned int delivery_period;
+    unsigned int quantity;
 
 public:
-    Supply(const Component &component, const BatchPeriod &deliveryPeriod, int initialQuantity);
+    Supply(std::shared_ptr<const Component> component, unsigned int deliveryPeriod, unsigned int initialQuantity=0);
 
-    const Component& get_component() const {
+    const std::shared_ptr<const Component> get_component() const {
         return component;
     }
 
-    const BatchPeriod &get_delivery_period() const {
+    const unsigned int &get_delivery_period() const {
         return delivery_period;
     }
 
-    int get_quantity() const {
+    unsigned int get_quantity() const {
         return quantity;
+    }
+
+    void add_quantity(unsigned int q) {
+        quantity += q;
     }
 
     bool operator==(const Supply &rhs) const;
