@@ -60,7 +60,7 @@ bool BatchProcessor::can_produce() {
         return false;
    }
 
-    return true;
+   return true;
 }
 
 // Verifica le componenti in arrivo, se il periodo corrente corrisponde con quello di arrivo aggiungiamo i componenti a magazzino
