@@ -70,7 +70,7 @@ bool BatchProcessor::can_produce() const {
         // Verifichiamo di non essere in stallo, ovvero se dall'ultimo ordine in coda sono passati
         // più mesi di quelli necessari alla consegna di tutti i componenti del suo modello
         const shared_ptr<const Order> lastOrder { order_queue.back() };
-        if (batch_month > lastOrder->get_timestamp() + lastOrder->get_model()->get_max_delivery_months())
+        if (batch_month > lastOrder->get_timestamp() + lastOrder->get_model()->get_max_delivery_months()+1)
             return false;
     }
 
@@ -101,7 +101,9 @@ void BatchProcessor::process_batch() {
     while (it != order_queue.end()) {
         double cash_needed = process_missing_components(*it, false);
         if(cash_needed <= cash_amount) {
-            if(cash_needed <= 0) {
+            if(cash_needed < 0) {
+                // riserviamo gli eventuali ultimi pezzi mancanti dal magazzino
+                process_missing_components(*it, true);
                 // possiamo evadere l'ordine
                 process_order(*it);
                 it = order_queue.erase(it);
@@ -111,8 +113,11 @@ void BatchProcessor::process_batch() {
 
                 // evitiamo l'incremento dell'iteratore, dato che lo abbiamo già fatto tramite la erase()
                 continue;
-            } else
+            } else {
+                // riserviamo gli eventuali pezzi presenti in magazzino e
+                // effettuiamo gli ordini dei rimanenti(se non già fatto in precedenza)
                 process_missing_components(*it, true);
+            }
         } else {
             cout << "Non c'è disponibilità sufficiente per l'ordine: " << *it;
         }
@@ -121,10 +126,10 @@ void BatchProcessor::process_batch() {
     }
 }
 
-//TODO per adesso ordina tuttti i componenti in un colpo solo, iondipendentemente dalla data di delivery
 double BatchProcessor::process_missing_components(const std::shared_ptr<Order> order, bool processSupplies) {
     double cost {0};
     const Model &model = *order->get_model();
+    bool allComponentFulfilled=true;
 
     for(shared_ptr<const ComponentUsage> compUsage : model.get_components()) {
         // se il componente è già stato riservato possiamo saltarlo
@@ -145,44 +150,59 @@ double BatchProcessor::process_missing_components(const std::shared_ptr<Order> o
             }
 
             if (quantityNeeded > quantityAvailable) {
-                // Calcoliamo il costo dell'acquisto della quantità necessaria, tenendo conto anche di eventuali
-                // forniture già richieste questo mese e cercando di ottimizzare la quantità per avere un prezzo più basso
+                // Almeno un componente è ancora mancante quindi non poteremo evadere l'ordine
+                allComponentFulfilled = false;
 
-                int targetDeliveryMonth = batch_month + comp->get_months_to_delivery();
-                map<supply_key, unique_ptr<Supply>>::iterator it = supplies.find(supply_key(targetDeliveryMonth, comp));
-                if (it != supplies.end()) {
-                    // Esiste una fornitura precedente, di cui aumenteremo la quantità
-                    Supply &previousSupply{*(it->second)};
-                    //const unique_ptr<Supply> &previousSupply {supplies.at(supply_key(comp.get_id(), 1))};
-                    unsigned int quantityOfOngoingSupply = previousSupply.get_quantity();
-                    double costOfOngoingSupply = comp->get_price(quantityOfOngoingSupply);
-                    // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
-                    unsigned int suggestedQuantity = Component::get_suggested_quantity(
-                            quantityOfOngoingSupply + quantityNeeded);
-                    cost += comp->get_price(suggestedQuantity) - costOfOngoingSupply;
+                // Se non abbiamo ancora richiesto questo componente facciamo la richiesta di fornitura
+                if (quantityNeeded > order->get_requested_quantity(compUsage)) {
+                    // Calcoliamo il costo dell'acquisto della quantità necessaria, tenendo conto anche di eventuali
+                    // forniture già richieste questo mese e cercando di ottimizzare la quantità per avere un prezzo più basso
 
-                    // Effettua un'integrazione della richiesta di fornitura del lotto corrente, solo se non fatto in un lotto precedente
-                    if (processSupplies)
-                        previousSupply.add_quantity(suggestedQuantity - quantityOfOngoingSupply);
-                } else {
-                    // Nessuna fornitura precedente trovata, ne creiamo una nuova
-                    // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
-                    unsigned int suggestedQuantity = Component::get_suggested_quantity(quantityNeeded);
-                    cost += comp->get_price(suggestedQuantity);
+                    double supplyCost = 0;
+                    int targetDeliveryMonth = batch_month + comp->get_months_to_delivery();
+                    map<supply_key, unique_ptr<Supply>>::iterator it = supplies.find(
+                            supply_key(targetDeliveryMonth, comp));
+                    if (it != supplies.end()) {
+                        // Esiste una fornitura precedente, di cui aumenteremo la quantità
+                        Supply &previousSupply{*(it->second)};
+                        //const unique_ptr<Supply> &previousSupply {supplies.at(supply_key(comp.get_id(), 1))};
+                        unsigned int quantityOfOngoingSupply = previousSupply.get_quantity();
+                        double costOfOngoingSupply = comp->get_price(quantityOfOngoingSupply);
+                        // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
+                        unsigned int suggestedQuantity = Component::get_suggested_quantity(
+                                quantityOfOngoingSupply + quantityNeeded);
+                        supplyCost = comp->get_price(suggestedQuantity) - costOfOngoingSupply;
 
-                    // Effettua una nuova richiesta di fornitura solo se non fatto in un lotto precedente
-                    if (processSupplies)
-                        supplies[supply_key(targetDeliveryMonth, comp)] = make_unique<Supply>(comp, targetDeliveryMonth,
-                                                                                              suggestedQuantity);
+                        // Effettua un'integrazione della richiesta di fornitura del lotto corrente, solo se non fatto in un lotto precedente
+                        if (processSupplies) {
+                            previousSupply.add_quantity(suggestedQuantity - quantityOfOngoingSupply);
+                            cash_amount -= supplyCost; // Scala il denaro dalla cassa
+                            order->add_requested_quantity(compUsage, quantityNeeded);
+                        }
+                    } else {
+                        // Nessuna fornitura precedente trovata, ne creiamo una nuova
+                        // Otteniamo la quantità suggerita in base alle vicinanza della quantità alle soglie definite
+                        unsigned int suggestedQuantity = Component::get_suggested_quantity(quantityNeeded);
+                        supplyCost = comp->get_price(suggestedQuantity);
+
+                        // Effettua una nuova richiesta di fornitura solo se non fatto in un lotto precedente
+                        if (processSupplies) {
+                            supplies[supply_key(targetDeliveryMonth, comp)] = make_unique<Supply>(comp,
+                                                                                                  targetDeliveryMonth,
+                                                                                                  suggestedQuantity);
+                            cash_amount -= supplyCost; // Scala il denaro dalla cassa
+                            order->add_requested_quantity(compUsage, quantityNeeded);
+                        }
+                    }
+                    cost += supplyCost;
                 }
             }
         }
     }
 
-    // Scala il denaro dalla cassa
-    if(processSupplies) {
-        cash_amount -= cost;
-    }
+    if (allComponentFulfilled)
+        return -1;
+
     return cost;
 }
 

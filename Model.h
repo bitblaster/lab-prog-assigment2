@@ -71,11 +71,6 @@ public:
     unsigned int get_max_delivery_months() const {
         return max_delivery_months;
     }
-
-    /**
-     * Operatore assegnamento di spostamento
-     */
-    Model& operator=(Model&&) = default;
 };
 
 /**
