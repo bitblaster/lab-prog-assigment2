@@ -1,8 +1,9 @@
-//
-// Created by mozzicator on 26/01/20.
-//
-
-#include <iostream>
+/**
+ * Implementazione della classe BatchProcessor
+ *
+ * @author Roberto Mozzicato, 1236209
+ * @version 1.0 29/01/20
+ */#include <iostream>
 #include "parsers/ComponentParser.h"
 #include "parsers/ModelListParser.h"
 #include "BatchProcessor.h"
@@ -13,6 +14,8 @@
 
 using namespace std;
 using namespace parsers;
+
+BatchProcessor::BatchProcessor() : component_map(), model_map(), order_list(), order_queue(), processed_orders(), supplies(), stock(), cash_amount {0}, batch_month{0}, verbose{false}  {}
 
 void BatchProcessor::load_components(const string &componentsFile) {
     ComponentParser cp(componentsFile, component_map);
@@ -35,13 +38,6 @@ void BatchProcessor::load_orders(const string &ordersFile) {
     op.parse();
 
     batch_month = order_list.front()->get_timestamp();
-
-    cout << "Orders:" << endl;
-    for (const auto &order : order_list) {
-        cout << *order << endl;
-    }
-    cout << "Cassa disponibile: "<< cash_amount << endl;
-    cout << "Lotto iniziale: " << batch_month << endl;
 }
 
 void BatchProcessor::start_production() {
@@ -49,16 +45,19 @@ void BatchProcessor::start_production() {
         cout << "Preparazione lotto " << batch_month << ", ordini precedenti in coda: " << order_queue.size() << endl;
         verify_supplies();
         enqueue_new_orders();
-#ifdef DEBUG_MODE
-        cout << "Stato prima del lotto:" << endl;
-        print_current_status();
-#endif
+
+        if (verbose) {
+            cout << "Stato prima del lotto:" << endl;
+            print_current_status();
+        }
+
         process_batch();
 
-#ifdef DEBUG_MODE
-        cout << "Stato alla fine del lotto:" << endl;
-        print_current_status();
-#endif
+        if (verbose) {
+            cout << "Stato alla fine del lotto:" << endl;
+            print_current_status();
+        }
+
         ++batch_month;
     }
     print_current_status();
@@ -124,7 +123,7 @@ void BatchProcessor::process_batch() {
                 process_missing_components(*it, true);
             }
         } else {
-            cout << "Non c'è disponibilità sufficiente per l'ordine: " << *it;
+            cout << "Non c'è disponibilità sufficiente per l'ordine: " << **it << endl;
         }
 
         ++it;
@@ -260,13 +259,18 @@ void BatchProcessor::print_current_status() const {
     }
     cout << endl;
 
-    cout << "Ordini in coda: " << endl;
-    if (order_queue.empty())
-        cout << "   Nessuno" << endl;
-    else {
-        for (auto &order : order_queue) {
-            cout << "   " << *order << endl;
+    if (verbose) {
+        cout << "Ordini non evasi: " << endl;
+        if (order_queue.empty())
+            cout << "   Nessuno" << endl;
+        else {
+            for (auto &order : order_queue) {
+                cout << "   " << *order << endl;
+            }
         }
+        cout << endl;
     }
 }
+
+
 

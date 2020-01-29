@@ -21,8 +21,16 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    string ordersFile {argv[1]};
+
+    string option;
+    if(argc > 2)
+        option = argv[2];
+
     try {
         BatchProcessor bp;
+        if (option == "-v")
+            bp.set_verbose(true);
         bp.load_components("components_info.dat");
         bp.load_models("models.dat");
         bp.load_orders(argv[1]);

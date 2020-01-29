@@ -2,7 +2,7 @@
  * ModelParser.h
  * Scopo: Definire una sottoclasse di FileParser che effettui il parsing dei file dei singoli modelli
  *
- * @author Giacomo Seno
+ * @author Giacomo Seno, 1187124
  * @version 1.0 29/01/20
  */
 

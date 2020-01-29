@@ -2,7 +2,7 @@
  * ModelListParser.h
  * Scopo: definire una sottoclasse di FileParser che effettui il parsing del file models.dat
  *
- * @author Giacomo Seno
+ * @author Giacomo Seno, 1187124
  * @version 1.0 29/01/20
  */
 
