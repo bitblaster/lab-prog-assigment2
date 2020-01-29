@@ -1,6 +1,6 @@
 /**
  * StockItem.h
- * Scopo: Definere la classe che definisca il tipo degli elementi del magazzino
+ * Scopo: Definere la classe che rappresenti il tipo degli elementi del magazzino
  *
  * @author Giacomo Vettoretti, 1187540
  * @version 1.0 29/01/20
@@ -10,6 +10,8 @@
 #define INC_STOCK_ITEM_H
 
 /**
+ * Classe che rappresenta il tipo di elementi all'interno del magazzino.
+ *
  * Gli invarianti di classe sono:
  *  - quantity>0
  *  - availabiity non inferiore a 0

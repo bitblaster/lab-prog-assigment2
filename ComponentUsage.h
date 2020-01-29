@@ -4,6 +4,7 @@
  * @author Giacomo Seno
  * @version 1.0 29/01/20
  */
+
 #ifndef INC_COMPONENT_USAGE_H
 #define INC_COMPONENT_USAGE_H
 

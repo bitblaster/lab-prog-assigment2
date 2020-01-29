@@ -9,6 +9,12 @@
 #ifndef INC_STOCK_H
 #define INC_STOCK_H
 
+/**
+ * Classe che definisce il comportamento del magazzino delle componenti arrivate, ma non ancora utilizzate. Per far ciò
+ * viene utilizzata una mappa di StockItem con i quali sarà possibile svolgere le normali funzioni di un magazzino:
+ * aggiungere, riservare e rimuovere componenti.
+ */
+
 #include <map>
 #include <memory>
 #include "Component.h"

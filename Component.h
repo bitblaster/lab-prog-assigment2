@@ -10,7 +10,12 @@
 #define INC_COMPONENT_H
 
 /**
- *
+ * Classe, sottoclasse di "Part", che rappresenta una componente che andrà a costituire i vari modelli.
+ * Eredita Id e Nome dalla superclasse Part. I mesi necessari alla spedizione della componente sono rappresentati da
+ * valori int, mentre i 3 differenti prezzi per quantità<11, 10<quantità<50, quantità>50 sono rappresentati da valori
+ * double.
+ * i mesi necessari alla spedizione della componente e i prezzi sono fissati in fase di costruzione e non possono essere
+ * modificati
  * Gli invarianti di classe sono:
  *  - month_to_delivery deve essere sempre > 0
  *  -i price1/2/3 maggiori di 0
