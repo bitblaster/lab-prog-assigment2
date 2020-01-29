@@ -1,6 +1,9 @@
-//
-// Created by giacomo on 17/01/20.
-//
+/**
+ * Implementazione di Order.h
+ *
+ * @author Roberto Mozzicato, 1236209
+ * @version 1.0 29/01/20
+ */
 
 #include <iomanip>
 #include "Order.h"

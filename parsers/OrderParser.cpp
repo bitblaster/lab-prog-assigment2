@@ -1,6 +1,9 @@
-//
-// Created by mozzicator on 22/01/20.
-//
+/**
+ * Implementazione di OrderParser.h
+ *
+ * @author Roberto Mozzicato, 1236209
+ * @version 1.0 29/01/20
+ */
 
 #include <iomanip>
 #include <chrono>

@@ -16,6 +16,7 @@
  * double.
  * i mesi necessari alla spedizione della componente e i prezzi sono fissati in fase di costruzione e non possono essere
  * modificati
+ *
  * Gli invarianti di classe sono:
  *  - month_to_delivery deve essere sempre > 0
  *  -i price1/2/3 maggiori di 0
@@ -33,19 +34,6 @@ constexpr int kQuantityThresholdCount {2};
 
 /** Soglie di quantità per i diversi prezzi da applicare */
 constexpr int kQuantityThresholds[kQuantityThresholdCount] {11, 51};
-
-/*
- * Classe, sottoclasse di "Part", che rappresenta una componente che andranno a costituire i vari modelli.
- * Eredita Id e Nome dalla superclasse Part. I mesi necessari alla spedizione della componente sono rappresentati da
- * valori int, mentre i 3 differenti prezzi per quantità<11, 10<quantità<50, quantità>50 sono rappresentati da valori
- * double.
- * i mesi necessari alla spedizione della componente e i prezzi sono fissati in fase di costruzione e non possono essere
- * modificati
- *
- * Gli invarianti di classe sono:
- *  - month_to_delivery deve essere sempre > 0
- *
- */
 
 class Component : public Part {
     int months_to_delivery;
@@ -89,6 +77,7 @@ public:
 
 /**
  * Overload dell'operatore <<
+ * Stampa su uno stream id, nome della componente
  * @param stream        stream su cui stampare
  * @param component     componente da stampare
  * @return lo stream passato come parametro
