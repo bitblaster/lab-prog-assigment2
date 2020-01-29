@@ -15,7 +15,7 @@
 
 class Model : public Part {
     double price;
-    std::set<ComponentUsage> components;
+    std::set<std::shared_ptr<const ComponentUsage>> components;
     unsigned int max_delivery_months;
 
 public:
@@ -25,16 +25,16 @@ public:
         return price;
     }
 
-    const std::set<ComponentUsage>& get_components() const {
+    const std::set<std::shared_ptr<const ComponentUsage>>& get_components() const {
         return components;
     }
 
-    void add_component(const ComponentUsage &comp) {
+    void add_component(const std::shared_ptr<ComponentUsage> comp) {
         components.insert(comp);
 
         // Aggiorna, se necessario, il massimo numero di mesi
-        if (comp.get_component()->get_months_to_delivery() > max_delivery_months)
-            max_delivery_months = comp.get_component()->get_months_to_delivery();
+        if (comp->get_component()->get_months_to_delivery() > max_delivery_months)
+            max_delivery_months = comp->get_component()->get_months_to_delivery();
     }
 
     unsigned int get_max_delivery_months() const {

@@ -24,14 +24,14 @@ class BatchProcessor {
 
     /** Lista completa degli ordini da elaborare, da cui gli ordini vengono estratti
      * per essere accodati in order_queue nel mese di competenza */
-    std::list<std::shared_ptr<const Order>> order_list;
+    std::list<std::shared_ptr<Order>> order_list;
 
     /** Coda degli ordini non ancora evasi, da cui gli ordini vengono estratti
      * per essere accodati in processed_orders quando vengono evasi */
-    std::list<std::shared_ptr<const Order>> order_queue;
+    std::list<std::shared_ptr<Order>> order_queue;
 
     /** Lista degli ordini evasi */
-    std::list<std::shared_ptr<const Order>> processed_orders;
+    std::list<std::shared_ptr<Order>> processed_orders;
     double cash_amount;
     unsigned int batch_month;
 
@@ -45,8 +45,8 @@ class BatchProcessor {
     void verify_supplies();        //controlla le componenti ordinate se sono arrivate
     void enqueue_new_orders();     //aggiunge in coda gli ordini arrivati questo mese
     void process_batch();         // esegue la produzione vera e propria del lotto per gli ordini evadibili
-    double process_missing_components(const std::shared_ptr<const Order> order, bool processSupplies);          // verifica quanto costano i componenti mancanti di un ordine
-    void process_order(const std::shared_ptr<const Order> order);          // processa l'ordine e lo evade
+    double process_missing_components(const std::shared_ptr<Order> order, bool processSupplies);          // verifica quanto costano i componenti mancanti di un ordine
+    void process_order(const std::shared_ptr<Order> order);          // processa l'ordine e lo evade
     void print_current_status() const;        //stampa dopo ogni ordine lo stato
 
 public:

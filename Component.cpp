@@ -25,9 +25,9 @@ unsigned int Component::get_suggested_quantity(const unsigned int minimumQuantit
 double Component::get_price(const unsigned int quantity) const {
     for (int i=0; i<kQuantityThresholdCount; i++) {
         if(quantity < kQuantityThresholds[i])
-            return prices[i];
+            return prices[i] * quantity;
     }
-    return prices[kQuantityThresholdCount];
+    return prices[kQuantityThresholdCount] * quantity;
 }
 
 ostream& operator <<(ostream& stream, const Component& component) {

@@ -34,18 +34,19 @@ void BatchProcessor::load_orders(const string &ordersFile) {
     OrderParser op(ordersFile, cash_amount, order_list, model_map);
     op.parse();
 
-    int minTime = order_list.begin()->get()->get_timestamp();
-    int maxTime = order_list.end()->get()->get_timestamp();
+    batch_month = order_list.front()->get_timestamp();
 
     cout << "Orders:" << endl;
     for (const auto &order : order_list) {
         cout << *order << endl;
     }
-    cout<<"Cassa dispondibile: "<< cash_amount << endl;
+    cout << "Cassa dispondibile: "<< cash_amount << endl;
+    cout << "Lotto iniziale: " << batch_month << endl;
 }
 
 void BatchProcessor::start_production() {
     while (can_produce()) {
+        cout << "Inizio elaborazione lotto " << batch_month << endl;
         verify_supplies();
         enqueue_new_orders();
         process_batch();
@@ -58,39 +59,35 @@ bool BatchProcessor::can_produce() const {
     if(batch_month == 0)
         return false;
 
-    if(order_list.empty() && order_queue.empty())
-        return false;
+    if(order_list.empty()) {
+        if(order_queue.empty())
+            return false;
 
-    // Verifichiamo di non essere in stallo, ovvero dall'ultimo ordine in coda sono passati più mesi
-    // di quelli necessari alla consegna di tutti i componenti del suo modello
-    const shared_ptr<const Order> &lastOrder { *order_queue.end() };
-    if (order_list.empty() && batch_month > lastOrder->get_timestamp() + lastOrder->get_model()->get_max_delivery_months())
-        return false;
+        // Verifichiamo di non essere in stallo, ovvero se dall'ultimo ordine in coda sono passati
+        // più mesi di quelli necessari alla consegna di tutti i componenti del suo modello
+        const shared_ptr<const Order> lastOrder { order_queue.back() };
+        if (batch_month > lastOrder->get_timestamp() + lastOrder->get_model()->get_max_delivery_months())
+            return false;
+    }
 
    return true;
 }
 
 // Verifica le componenti in arrivo, se il periodo corrente corrisponde con quello di arrivo aggiungiamo i componenti a magazzino
 void BatchProcessor::verify_supplies() {
-    for (auto it = supplies.begin(); it != supplies.end();  ++it) {
-        if (it->second->get_delivery_period() == batch_month) {
-            stock.add(it->second->get_component(), it->second->get_quantity());
-            it = supplies.erase(it);
-        }
-        else if (it->second->get_delivery_period() > batch_month) {
-            // Dato che supplies è ordinato per periodo di delivery crescente,
-            // se troviamo un elemento don periodo successivo al corrente possiamo uscire
-            break;
-        }
+    // Dato che supplies è ordinato per periodo di delivery crescente,
+    // se troviamo un elemento don periodo successivo al corrente possiamo uscire
+    for (auto it = supplies.begin(); it != supplies.end() && it->second->get_delivery_period() == batch_month;  it = supplies.erase(it)) {
+        stock.add(it->second->get_component(), it->second->get_quantity());
     }
 }
 
 void BatchProcessor::enqueue_new_orders() {
     // Aggiunta alla coda ordini di questo mese
-    for (auto it = order_list.begin(); it != order_list.end() && (*it)->get_timestamp() == batch_month; ++it) {
+    for (auto it = order_list.begin(); it != order_list.end() && (*it)->get_timestamp() <= batch_month; it = order_list.erase(it)) {
         order_queue.push_back(*it);
-        it = order_list.erase(it);
     }
+    //cout << order_list.size() << ',' << order_queue.size() <<endl;
 }
 
 void BatchProcessor::process_batch() {
@@ -104,27 +101,32 @@ void BatchProcessor::process_batch() {
 
                 // stampa dello stato corrente, come richiesto
                 print_current_status();
+
+                // evitiamo l'incremento dell'iteratore, dato che lo abbiamo già fatto tramite la erase()
+                continue;
             } else
                 process_missing_components(*it, true);
         } else {
             cout << "Non c'è disponibilità sufficiente per l'ordine: " << *it;
         }
+
+        ++it;
     }
 }
 
 //TODO commentare
-double BatchProcessor::process_missing_components(const std::shared_ptr<const Order> order, bool processSupplies) {
-    //TODO verificare se serve questo if
-    if(processSupplies && order->is_waiting_components())
+double BatchProcessor::process_missing_components(const std::shared_ptr<Order> order, bool processSupplies) {
+    if(order->is_waiting_components())
         return 0;
 
     double cost {0};
     const Model &model = *order->get_model();
-    for(ComponentUsage compUsage : model.get_components()) {
-        const shared_ptr<const Component> &comp = compUsage.get_component();
-        unsigned int quantityNeeded = compUsage.get_quantity() * order->get_quantity();
+
+    for(shared_ptr<const ComponentUsage> compUsage : model.get_components()) {
+        const shared_ptr<const Component> comp = compUsage->get_component();
+        unsigned int quantityNeeded = compUsage->get_quantity() * order->get_quantity();
         unsigned quantityAvailable = processSupplies ? stock.reserve(comp, quantityNeeded) : stock.get_availability(comp);
-        if (quantityNeeded - quantityAvailable > 0) {
+        if (quantityNeeded > quantityAvailable) {
             // Calcoliamo il costo dell'acquisto della quantità necessaria, tenendo conto anche di eventuali
             // forniture già richieste questo mese e cercando di ottimizzare la quantità per avere un prezzo più basso
 
@@ -154,16 +156,20 @@ double BatchProcessor::process_missing_components(const std::shared_ptr<const Or
         }
     }
 
+    if(processSupplies) {
+        order->set_waiting_components(true);
+        cash_amount -= cost;
+    }
     return cost;
 }
 
-void BatchProcessor::process_order(const shared_ptr<const Order> order) {
+void BatchProcessor::process_order(const shared_ptr<Order> order) {
     const Model &model = *order->get_model();
-    for(ComponentUsage compUsage : model.get_components()) {
-        unsigned int quantityNeeded = compUsage.get_quantity() * order->get_quantity();
+    for(shared_ptr<const ComponentUsage> compUsage : model.get_components()) {
+        unsigned int quantityNeeded = compUsage->get_quantity() * order->get_quantity();
 
         // rimozione componenti dal magazzino
-        stock.remove(compUsage.get_component(), quantityNeeded);
+        stock.remove(compUsage->get_component(), quantityNeeded);
     }
 
     // aggiunta alla cassa del ricavo dell'ordine

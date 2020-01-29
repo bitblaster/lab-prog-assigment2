@@ -73,7 +73,6 @@ int main(int argc, char *argv[]) {
         BatchProcessor bp;
         bp.load_components("components_info.dat");
         bp.load_models("models.dat");
-
         bp.load_orders(argv[1]);
         bp.start_production();
 

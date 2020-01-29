@@ -37,8 +37,7 @@ namespace parsers {
                 int componentQuantityInModel {stoi(parsedFields[2])};
 
                 const shared_ptr<const Component> comp {component_map.at(componentId)};
-                ComponentUsage compUsage(comp, componentNameInModel, componentQuantityInModel);
-                parsed_model->add_component(compUsage);
+                parsed_model->add_component(make_unique<ComponentUsage>(comp, componentNameInModel, componentQuantityInModel));
             }
         } catch (exception e) {
             throw ParsingException(parsedFileName, line);

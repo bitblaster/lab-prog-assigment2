@@ -13,7 +13,7 @@
 using namespace std;
 
 namespace parsers {
-    OrderParser::OrderParser(const string &fileName, double &cashAmount, list<shared_ptr<const Order>> &parsedOrders, const map<int, shared_ptr<const Model>> &modelMap)
+    OrderParser::OrderParser(const string &fileName, double &cashAmount, list<shared_ptr<Order>> &parsedOrders, const map<int, shared_ptr<const Model>> &modelMap)
             : FileParser{fileName}, cash_amount{cashAmount}, parsed_orders(parsedOrders), model_map{modelMap} { }
 
     void OrderParser::parse_row(const int line, const vector<string> &parsedFields) {

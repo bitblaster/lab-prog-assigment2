@@ -15,14 +15,14 @@
 namespace parsers {
     class OrderParser : public FileParser {
         double &cash_amount;
-        std::list<std::shared_ptr<const Order>> &parsed_orders;
+        std::list<std::shared_ptr<Order>> &parsed_orders;
         const std::map<int, std::shared_ptr<const Model>> &model_map;
 
     protected:
         void parse_row(int line, const std::vector<std::string> &parsedFields) override;
 
     public:
-        OrderParser(const std::string &fileName, double &cashAmount, std::list<std::shared_ptr<const Order>> &parsedOrders, const std::map<int, std::shared_ptr<const Model>> &modelMap);
+        OrderParser(const std::string &fileName, double &cashAmount, std::list<std::shared_ptr<Order>> &parsedOrders, const std::map<int, std::shared_ptr<const Model>> &modelMap);
     };
 }
 
