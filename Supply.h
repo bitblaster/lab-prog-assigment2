@@ -2,7 +2,7 @@
  *  Supply.h
  *  Scopo: Definire la classe Supply che rappresenta la fornitura di un solo tipo di componenti
  *
- *  @author Giacomo Seno
+ *  @author Giacomo Seno, 1187124
  *  @version 1.0 29/01/20
  */
 

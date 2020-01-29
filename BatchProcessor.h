@@ -1,5 +1,5 @@
 /**
- * ComponentUsage.h
+ * BatchProcessor.h
  * Scopo: Definire la classe BatchProcessor che si occupa della produzione dei lotti
  * @author Roberto Mozzicato, 1236209
  * @version 1.0 29/01/20

@@ -2,7 +2,7 @@
  * Model.h
  * Scopo: Definire una classe Model che rappresenti le caratteristiche dei vari modelli
  *
- * @author Giacomo Seno
+ * @author Giacomo Seno, 1187124
  * @version 1.0 29/01/20
  */
 

@@ -2,7 +2,7 @@
  * Part.h
  * Scopo: definire una superclasse per le classi Model e Component
  *
- * @author Giacomo Seno
+ * @author Giacomo Seno, 1187124
  * @version 1.0 29/01/20
  */
 
