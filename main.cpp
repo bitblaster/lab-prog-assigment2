@@ -1,3 +1,12 @@
+/**
+ * Classe main.cpp del progetto
+ *
+ * @author Giacomo Vettoretti, 1187540
+ * @version 1.0 29/01/20
+ */
+
+
+
 #include <iostream>
 #include <vector>
 #include <list>

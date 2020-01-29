@@ -1,6 +1,10 @@
-//
-// Created by Giacomo Seno on 17/01/2020.
-//
+/**
+ * Stock.h
+ * Scopo: Definere la classe che gestisca il magazzino delle componenti arrivate, ma non utilizzate
+ *
+ * @author Giacomo Vettoretti, 1187540
+ * @version 1.0 29/01/20
+ */
 
 #ifndef INC_STOCK_H
 #define INC_STOCK_H

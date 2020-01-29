@@ -1,7 +1,9 @@
-//
-// Created by mozzicator on 16/01/20.
-//
-
+/**
+ * Implementazione di Component.h
+ *
+ * @author Giacomo Vettoretti, 1187540
+ * @version 1.0 29/01/20
+ */
 #include <ostream>
 #include "Component.h"
 
