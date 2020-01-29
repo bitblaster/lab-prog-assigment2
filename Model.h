@@ -9,19 +9,17 @@
 #ifndef INC_MODEL_H
 #define INC_MODEL_H
 
-/**
- * Gli invarianti della classe sono:
- * - price > 0
- * - max_delivery_months > 0
- */
-
 #include <string>
 #include <set>
 #include "Component.h"
 #include "Part.h"
 #include "ComponentUsage.h"
 
-//TODO: definire copy/move constructors e operators!!!
+/**
+ * Gli invarianti della classe sono:
+ * - price > 0
+ * - max_delivery_months > 0
+ */
 
 class Model : public Part {
     double price;
@@ -46,10 +44,18 @@ public:
         return price;
     }
 
+    /**
+     * Ritorna un set dei componenti necessari per quel determinato modello
+     * @return components
+     */
     const std::set<std::shared_ptr<const ComponentUsage>>& get_components() const {
         return components;
     }
 
+    /**
+     * Aggiunge un componente al set dei componenti necessari per costruire il modello
+     * @param comp
+     */
     void add_component(const std::shared_ptr<ComponentUsage> comp) {
         components.insert(comp);
 
@@ -71,6 +77,7 @@ public:
      */
     Model& operator=(Model&&) = default;
 };
+
 /**
  * Overload dell'operatore <<
  * Stampa su uno stream l'id, il nome, il prezzo e il numero dei componenti necessari per quel determinato modello

@@ -9,17 +9,15 @@
 #ifndef INC_SUPPLY_H
 #define INC_SUPPLY_H
 
+#include <memory>
+#include "Component.h"
+#include "BatchPeriod.h"
+
 /**
  * Gli invarianti della classe sono:
  * - delivery_period > 0
  * - quantity > 0
  */
-
-#include <memory>
-#include "Component.h"
-#include "BatchPeriod.h"
-
-// TODO capire come fare un set di supply in cui ;la chiave sia la combinazione di componente e batchperiod!
 class Supply {
     std::shared_ptr<const Component> component;
     const unsigned int delivery_period;

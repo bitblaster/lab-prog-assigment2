@@ -1,6 +1,9 @@
-//
-// Created by mozzicator on 26/01/20.
-//
+/**
+ * Implementazione della classe Supply
+ *
+ * @author Giacomo Seno
+ * @version 1.0 29/01/20
+ */
 
 #include "Supply.h"
 

@@ -1,6 +1,10 @@
-//
-// Created by mozzicator on 16/01/20.
-//
+/**
+ * Implementazione della classe Model
+ *
+ * @author Giacomo Seno
+ * @version 1.0 29/01/20
+ */
+
 #include <ostream>
 #include "Model.h"
 
