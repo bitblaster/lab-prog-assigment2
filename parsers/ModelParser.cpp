@@ -1,6 +1,9 @@
-//
-// Created by mozzicator on 22/01/20.
-//
+/**
+ * Implementazione di ModelParser
+ *
+ * @author Giacomo Seno
+ * @version 1.0 29/01/20
+ */
 
 #include <assert.h>
 #include "FileParser.h"
@@ -28,7 +31,7 @@ namespace parsers {
 
                 parsed_model = make_shared<Model>(modelId, name, price);
             } else {
-                // In questo punto il model dev'essere già statao letto dal file
+                // In questo punto il model dev'essere già stato letto dal file
                 if(parsed_model.get() == nullptr)
                     throw ParsingException("Errore di parsing nel file " + parsedFileName + ": rilevato componente prima del modello a linea " + to_string(line));
 

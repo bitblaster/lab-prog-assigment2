@@ -1,6 +1,9 @@
-//
-// Created by mozzicator on 22/01/20.
-//
+/**
+ * Implementazione di ModelListParser
+ *
+ * @author Giacomo Seno
+ * @version 1.0 29/01/20
+ */
 
 #include "FileParser.h"
 #include "ModelListParser.h"

@@ -19,7 +19,7 @@ using namespace std;
 
 // TODO verificare inizializzazione di tutti i membri e rimuovere costruttori di default
 // TODO rinominare BatchProcessor in Production
- // TODO mettere namespace alle classi!
+// TODO mettere namespace alle classi!
 // todo aggiungere commenti throws nelle funzioni che possono lanciare eccezioni
 //TODO verificare che funziona ordinamento ordini
 int main(int argc, char *argv[]) {
