@@ -11,8 +11,6 @@
 #include "Component.h"
 #include "Model.h"
 #include "Order.h"
-#include "BatchPeriod.h"
-#include "Fund.h"
 #include "Supply.h"
 #include "Stock.h"
 

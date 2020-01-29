@@ -9,7 +9,6 @@
 #include <map>
 #include "Model.h"
 #include "Component.h"
-#include "BatchPeriod.h"
 
 class Order {
     unsigned int timestamp;

@@ -11,7 +11,6 @@
 
 #include <memory>
 #include "Component.h"
-#include "BatchPeriod.h"
 
 /**
  * Gli invarianti della classe sono:

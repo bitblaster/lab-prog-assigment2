@@ -30,7 +30,7 @@ namespace parsers {
 
     public:
         /**
-         * Costruttore di ModelParser
+         * Costruttore di ComponentParser
          * @param fileName          nome del file su cui deve essere fatto il parsing
          * @param componentMap      mappa che andrà a contenente le componenti
          */

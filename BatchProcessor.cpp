@@ -49,14 +49,19 @@ void BatchProcessor::start_production() {
         cout << "Preparazione lotto " << batch_month << ", ordini precedenti in coda: " << order_queue.size() << endl;
         verify_supplies();
         enqueue_new_orders();
+#ifdef DEBUG_MODE
         cout << "Stato prima del lotto:" << endl;
         print_current_status();
+#endif
         process_batch();
 
+#ifdef DEBUG_MODE
         cout << "Stato alla fine del lotto:" << endl;
         print_current_status();
+#endif
         ++batch_month;
     }
+    print_current_status();
 }
 
 bool BatchProcessor::can_produce() const {

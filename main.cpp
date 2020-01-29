@@ -6,21 +6,9 @@
  */
 
 
-
 #include <iostream>
-#include <vector>
-#include <list>
-#include <queue>
 #include "parsers/ComponentParser.h"
-#include "parsers/ModelListParser.h"
-#include "parsers/OrderParser.h"
-#include "parsers/ModelParser.h"
-#include "Order.h"
 #include "BatchProcessor.h"
-#include "BatchPeriod.h"
-#include "Supply.h"
-#include <string>
-
 using namespace parsers;
 
 using namespace std;
