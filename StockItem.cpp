@@ -1,6 +1,10 @@
-//
-// Created by giacomo on 26/01/20.
-//
+/**
+ * Implementazione della classe StockItem
+ *
+ * @author Giacomo Vettoretti, 1187540
+ * @version 1.0 29/01/20
+ */
+
 
 #include "Stock.h"
 #include "StockItem.h"

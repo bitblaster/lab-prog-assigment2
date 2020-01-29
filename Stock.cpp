@@ -1,6 +1,9 @@
-//
-// Created by Giacomo Seno on 17/01/2020.
-//
+/**
+ * Implementazione di Stock.h
+ *
+ * @author Giacomo Vettoretti, 1187540
+ * @version 1.0 29/01/20
+ */
 
 #include <iostream>
 #include "Stock.h"
