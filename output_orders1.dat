@@ -1,0 +1,215 @@
+Preparazione lotto 1, ordini precedenti in coda: 0
+Inizio produzione lotto 1, ordini in coda: 2
+Preparazione lotto 2, ordini precedenti in coda: 2
+Inizio produzione lotto 2, ordini in coda: 2
+Preparazione lotto 3, ordini precedenti in coda: 2
+Inizio produzione lotto 3, ordini in coda: 5
+Preparazione lotto 4, ordini precedenti in coda: 5
+Inizio produzione lotto 4, ordini in coda: 5
+------- STATO CORRENTE PRODUZIONE -------
+
+Acquisti effettuati: 
+   Componente: 1, elemento_riscaldante_6cm_1200W, mese consegna prevista: 5, quantità: 2
+   Componente: 5, motore_10W, mese consegna prevista: 5, quantità: 2
+   Componente: 7, morsetto_mammut_a_2_vie, mese consegna prevista: 5, quantità: 6
+   Componente: 8, ventola_6cm, mese consegna prevista: 5, quantità: 2
+   Componente: 12, involucro_aspiratore_anteriore, mese consegna prevista: 5, quantità: 2
+   Componente: 13, involucro_aspiratore_posteriore, mese consegna prevista: 5, quantità: 2
+   Componente: 20, vetro_semi_circolare_convesso_20cm, mese consegna prevista: 5, quantità: 3
+   Componente: 3, involucro_phone_destro, mese consegna prevista: 6, quantità: 2
+   Componente: 4, involucro_phone_sinistro, mese consegna prevista: 6, quantità: 2
+   Componente: 9, cavo_elettrico_con_spina, mese consegna prevista: 6, quantità: 2
+   Componente: 21, base_plafoniera_18cm, mese consegna prevista: 6, quantità: 3
+
+Magazzino: 
+   Componente: 2, diodo_di_protezione_surriscaldamento, quantità: 4, disponibilità: 4
+   Componente: 6, interruttore, quantità: 2, disponibilità: 2
+   Componente: 7, morsetto_mammut_a_2_vie, quantità: 2, disponibilità: 0
+   Componente: 9, cavo_elettrico_con_spina, quantità: 2, disponibilità: 2
+   Componente: 10, motore_20W, quantità: 2, disponibilità: 0
+   Componente: 11, ventola_18cm, quantità: 2, disponibilità: 2
+   Componente: 14, elemento_riscaldante_18cm_2000W, quantità: 0, disponibilità: 0
+   Componente: 15, involucro_termoventilatore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 16, involucro_termoventilatore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 17, portalampade_E27, quantità: 4, disponibilità: 4
+   Componente: 18, vetro_circolare_convesso_28cm, quantità: 1, disponibilità: 1
+   Componente: 19, base_plafoniera_26cm, quantità: 1, disponibilità: 1
+
+Ordini evasi: 
+   mese: 1, modello: 4, quantità:4, componenti: (10, motore_20W, quantità: 1) (14, elemento_riscaldante_18cm_2000W, quantità: 1) (11, ventola_18cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (15, involucro_termoventilatore_anteriore, quantità: 1) (16, involucro_termoventilatore_posteriore, quantità: 1) 
+
+Preparazione lotto 5, ordini precedenti in coda: 4
+Inizio produzione lotto 5, ordini in coda: 4
+------- STATO CORRENTE PRODUZIONE -------
+
+Acquisti effettuati: 
+   Componente: 3, involucro_phone_destro, mese consegna prevista: 6, quantità: 2
+   Componente: 4, involucro_phone_sinistro, mese consegna prevista: 6, quantità: 2
+   Componente: 9, cavo_elettrico_con_spina, mese consegna prevista: 6, quantità: 2
+   Componente: 21, base_plafoniera_18cm, mese consegna prevista: 6, quantità: 3
+
+Magazzino: 
+   Componente: 1, elemento_riscaldante_6cm_1200W, quantità: 2, disponibilità: 2
+   Componente: 2, diodo_di_protezione_surriscaldamento, quantità: 4, disponibilità: 0
+   Componente: 5, motore_10W, quantità: 2, disponibilità: 2
+   Componente: 6, interruttore, quantità: 2, disponibilità: 0
+   Componente: 7, morsetto_mammut_a_2_vie, quantità: 6, disponibilità: 6
+   Componente: 8, ventola_6cm, quantità: 2, disponibilità: 2
+   Componente: 9, cavo_elettrico_con_spina, quantità: 0, disponibilità: 0
+   Componente: 10, motore_20W, quantità: 0, disponibilità: 0
+   Componente: 11, ventola_18cm, quantità: 0, disponibilità: 0
+   Componente: 12, involucro_aspiratore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 13, involucro_aspiratore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 14, elemento_riscaldante_18cm_2000W, quantità: 0, disponibilità: 0
+   Componente: 15, involucro_termoventilatore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 16, involucro_termoventilatore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 17, portalampade_E27, quantità: 4, disponibilità: 0
+   Componente: 18, vetro_circolare_convesso_28cm, quantità: 1, disponibilità: 0
+   Componente: 19, base_plafoniera_26cm, quantità: 1, disponibilità: 0
+   Componente: 20, vetro_semi_circolare_convesso_20cm, quantità: 3, disponibilità: 3
+
+Ordini evasi: 
+   mese: 1, modello: 4, quantità:4, componenti: (10, motore_20W, quantità: 1) (14, elemento_riscaldante_18cm_2000W, quantità: 1) (11, ventola_18cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (15, involucro_termoventilatore_anteriore, quantità: 1) (16, involucro_termoventilatore_posteriore, quantità: 1) 
+   mese: 1, modello: 1, quantità:2, componenti: (10, motore_20W, quantità: 1) (11, ventola_18cm, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (12, involucro_aspiratore_anteriore, quantità: 1) (13, involucro_aspiratore_posteriore, quantità: 1) 
+
+------- STATO CORRENTE PRODUZIONE -------
+
+Acquisti effettuati: 
+   Componente: 3, involucro_phone_destro, mese consegna prevista: 6, quantità: 2
+   Componente: 4, involucro_phone_sinistro, mese consegna prevista: 6, quantità: 2
+   Componente: 9, cavo_elettrico_con_spina, mese consegna prevista: 6, quantità: 2
+   Componente: 21, base_plafoniera_18cm, mese consegna prevista: 6, quantità: 3
+
+Magazzino: 
+   Componente: 1, elemento_riscaldante_6cm_1200W, quantità: 2, disponibilità: 2
+   Componente: 2, diodo_di_protezione_surriscaldamento, quantità: 4, disponibilità: 0
+   Componente: 5, motore_10W, quantità: 2, disponibilità: 2
+   Componente: 6, interruttore, quantità: 2, disponibilità: 0
+   Componente: 7, morsetto_mammut_a_2_vie, quantità: 5, disponibilità: 5
+   Componente: 8, ventola_6cm, quantità: 2, disponibilità: 2
+   Componente: 9, cavo_elettrico_con_spina, quantità: 0, disponibilità: 0
+   Componente: 10, motore_20W, quantità: 0, disponibilità: 0
+   Componente: 11, ventola_18cm, quantità: 0, disponibilità: 0
+   Componente: 12, involucro_aspiratore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 13, involucro_aspiratore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 14, elemento_riscaldante_18cm_2000W, quantità: 0, disponibilità: 0
+   Componente: 15, involucro_termoventilatore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 16, involucro_termoventilatore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 17, portalampade_E27, quantità: 3, disponibilità: 0
+   Componente: 18, vetro_circolare_convesso_28cm, quantità: 0, disponibilità: 0
+   Componente: 19, base_plafoniera_26cm, quantità: 0, disponibilità: 0
+   Componente: 20, vetro_semi_circolare_convesso_20cm, quantità: 3, disponibilità: 3
+
+Ordini evasi: 
+   mese: 1, modello: 4, quantità:4, componenti: (10, motore_20W, quantità: 1) (14, elemento_riscaldante_18cm_2000W, quantità: 1) (11, ventola_18cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (15, involucro_termoventilatore_anteriore, quantità: 1) (16, involucro_termoventilatore_posteriore, quantità: 1) 
+   mese: 1, modello: 1, quantità:2, componenti: (10, motore_20W, quantità: 1) (11, ventola_18cm, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (12, involucro_aspiratore_anteriore, quantità: 1) (13, involucro_aspiratore_posteriore, quantità: 1) 
+   mese: 3, modello: 2, quantità:1, componenti: (19, base_plafoniera_26cm, quantità: 1) (17, portalampade_E27, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (18, vetro_circolare_convesso_28cm, quantità: 1) 
+
+Preparazione lotto 6, ordini precedenti in coda: 2
+Inizio produzione lotto 6, ordini in coda: 2
+------- STATO CORRENTE PRODUZIONE -------
+
+Acquisti effettuati: 
+   Nessuno
+
+Magazzino: 
+   Componente: 1, elemento_riscaldante_6cm_1200W, quantità: 0, disponibilità: 0
+   Componente: 2, diodo_di_protezione_surriscaldamento, quantità: 0, disponibilità: 0
+   Componente: 3, involucro_phone_destro, quantità: 0, disponibilità: 0
+   Componente: 4, involucro_phone_sinistro, quantità: 0, disponibilità: 0
+   Componente: 5, motore_10W, quantità: 0, disponibilità: 0
+   Componente: 6, interruttore, quantità: 0, disponibilità: 0
+   Componente: 7, morsetto_mammut_a_2_vie, quantità: 3, disponibilità: 0
+   Componente: 8, ventola_6cm, quantità: 0, disponibilità: 0
+   Componente: 9, cavo_elettrico_con_spina, quantità: 0, disponibilità: 0
+   Componente: 10, motore_20W, quantità: 0, disponibilità: 0
+   Componente: 11, ventola_18cm, quantità: 0, disponibilità: 0
+   Componente: 12, involucro_aspiratore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 13, involucro_aspiratore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 14, elemento_riscaldante_18cm_2000W, quantità: 0, disponibilità: 0
+   Componente: 15, involucro_termoventilatore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 16, involucro_termoventilatore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 17, portalampade_E27, quantità: 3, disponibilità: 0
+   Componente: 18, vetro_circolare_convesso_28cm, quantità: 0, disponibilità: 0
+   Componente: 19, base_plafoniera_26cm, quantità: 0, disponibilità: 0
+   Componente: 20, vetro_semi_circolare_convesso_20cm, quantità: 3, disponibilità: 0
+   Componente: 21, base_plafoniera_18cm, quantità: 3, disponibilità: 3
+
+Ordini evasi: 
+   mese: 1, modello: 4, quantità:4, componenti: (10, motore_20W, quantità: 1) (14, elemento_riscaldante_18cm_2000W, quantità: 1) (11, ventola_18cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (15, involucro_termoventilatore_anteriore, quantità: 1) (16, involucro_termoventilatore_posteriore, quantità: 1) 
+   mese: 1, modello: 1, quantità:2, componenti: (10, motore_20W, quantità: 1) (11, ventola_18cm, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (12, involucro_aspiratore_anteriore, quantità: 1) (13, involucro_aspiratore_posteriore, quantità: 1) 
+   mese: 3, modello: 2, quantità:1, componenti: (19, base_plafoniera_26cm, quantità: 1) (17, portalampade_E27, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (18, vetro_circolare_convesso_28cm, quantità: 1) 
+   mese: 3, modello: 5, quantità:2, componenti: (5, motore_10W, quantità: 1) (1, elemento_riscaldante_6cm_1200W, quantità: 1) (8, ventola_6cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (3, involucro_phone_destro, quantità: 1) (4, involucro_phone_sinistro, quantità: 1) 
+
+------- STATO CORRENTE PRODUZIONE -------
+
+Acquisti effettuati: 
+   Nessuno
+
+Magazzino: 
+   Componente: 1, elemento_riscaldante_6cm_1200W, quantità: 0, disponibilità: 0
+   Componente: 2, diodo_di_protezione_surriscaldamento, quantità: 0, disponibilità: 0
+   Componente: 3, involucro_phone_destro, quantità: 0, disponibilità: 0
+   Componente: 4, involucro_phone_sinistro, quantità: 0, disponibilità: 0
+   Componente: 5, motore_10W, quantità: 0, disponibilità: 0
+   Componente: 6, interruttore, quantità: 0, disponibilità: 0
+   Componente: 7, morsetto_mammut_a_2_vie, quantità: 0, disponibilità: 0
+   Componente: 8, ventola_6cm, quantità: 0, disponibilità: 0
+   Componente: 9, cavo_elettrico_con_spina, quantità: 0, disponibilità: 0
+   Componente: 10, motore_20W, quantità: 0, disponibilità: 0
+   Componente: 11, ventola_18cm, quantità: 0, disponibilità: 0
+   Componente: 12, involucro_aspiratore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 13, involucro_aspiratore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 14, elemento_riscaldante_18cm_2000W, quantità: 0, disponibilità: 0
+   Componente: 15, involucro_termoventilatore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 16, involucro_termoventilatore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 17, portalampade_E27, quantità: 0, disponibilità: 0
+   Componente: 18, vetro_circolare_convesso_28cm, quantità: 0, disponibilità: 0
+   Componente: 19, base_plafoniera_26cm, quantità: 0, disponibilità: 0
+   Componente: 20, vetro_semi_circolare_convesso_20cm, quantità: 0, disponibilità: 0
+   Componente: 21, base_plafoniera_18cm, quantità: 0, disponibilità: 0
+
+Ordini evasi: 
+   mese: 1, modello: 4, quantità:4, componenti: (10, motore_20W, quantità: 1) (14, elemento_riscaldante_18cm_2000W, quantità: 1) (11, ventola_18cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (15, involucro_termoventilatore_anteriore, quantità: 1) (16, involucro_termoventilatore_posteriore, quantità: 1) 
+   mese: 1, modello: 1, quantità:2, componenti: (10, motore_20W, quantità: 1) (11, ventola_18cm, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (12, involucro_aspiratore_anteriore, quantità: 1) (13, involucro_aspiratore_posteriore, quantità: 1) 
+   mese: 3, modello: 2, quantità:1, componenti: (19, base_plafoniera_26cm, quantità: 1) (17, portalampade_E27, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (18, vetro_circolare_convesso_28cm, quantità: 1) 
+   mese: 3, modello: 5, quantità:2, componenti: (5, motore_10W, quantità: 1) (1, elemento_riscaldante_6cm_1200W, quantità: 1) (8, ventola_6cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (3, involucro_phone_destro, quantità: 1) (4, involucro_phone_sinistro, quantità: 1) 
+   mese: 3, modello: 3, quantità:3, componenti: (21, base_plafoniera_18cm, quantità: 1) (17, portalampade_E27, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (20, vetro_semi_circolare_convesso_20cm, quantità: 1) 
+
+------- STATO CORRENTE PRODUZIONE -------
+
+Acquisti effettuati: 
+   Nessuno
+
+Magazzino: 
+   Componente: 1, elemento_riscaldante_6cm_1200W, quantità: 0, disponibilità: 0
+   Componente: 2, diodo_di_protezione_surriscaldamento, quantità: 0, disponibilità: 0
+   Componente: 3, involucro_phone_destro, quantità: 0, disponibilità: 0
+   Componente: 4, involucro_phone_sinistro, quantità: 0, disponibilità: 0
+   Componente: 5, motore_10W, quantità: 0, disponibilità: 0
+   Componente: 6, interruttore, quantità: 0, disponibilità: 0
+   Componente: 7, morsetto_mammut_a_2_vie, quantità: 0, disponibilità: 0
+   Componente: 8, ventola_6cm, quantità: 0, disponibilità: 0
+   Componente: 9, cavo_elettrico_con_spina, quantità: 0, disponibilità: 0
+   Componente: 10, motore_20W, quantità: 0, disponibilità: 0
+   Componente: 11, ventola_18cm, quantità: 0, disponibilità: 0
+   Componente: 12, involucro_aspiratore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 13, involucro_aspiratore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 14, elemento_riscaldante_18cm_2000W, quantità: 0, disponibilità: 0
+   Componente: 15, involucro_termoventilatore_anteriore, quantità: 0, disponibilità: 0
+   Componente: 16, involucro_termoventilatore_posteriore, quantità: 0, disponibilità: 0
+   Componente: 17, portalampade_E27, quantità: 0, disponibilità: 0
+   Componente: 18, vetro_circolare_convesso_28cm, quantità: 0, disponibilità: 0
+   Componente: 19, base_plafoniera_26cm, quantità: 0, disponibilità: 0
+   Componente: 20, vetro_semi_circolare_convesso_20cm, quantità: 0, disponibilità: 0
+   Componente: 21, base_plafoniera_18cm, quantità: 0, disponibilità: 0
+
+Ordini evasi: 
+   mese: 1, modello: 4, quantità:4, componenti: (10, motore_20W, quantità: 1) (14, elemento_riscaldante_18cm_2000W, quantità: 1) (11, ventola_18cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (15, involucro_termoventilatore_anteriore, quantità: 1) (16, involucro_termoventilatore_posteriore, quantità: 1) 
+   mese: 1, modello: 1, quantità:2, componenti: (10, motore_20W, quantità: 1) (11, ventola_18cm, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (12, involucro_aspiratore_anteriore, quantità: 1) (13, involucro_aspiratore_posteriore, quantità: 1) 
+   mese: 3, modello: 2, quantità:1, componenti: (19, base_plafoniera_26cm, quantità: 1) (17, portalampade_E27, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (18, vetro_circolare_convesso_28cm, quantità: 1) 
+   mese: 3, modello: 5, quantità:2, componenti: (5, motore_10W, quantità: 1) (1, elemento_riscaldante_6cm_1200W, quantità: 1) (8, ventola_6cm, quantità: 1) (2, diodo_di_protezione_surriscaldamento, quantità: 2) (6, interruttore, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (9, cavo_elettrico_con_spina, quantità: 1) (3, involucro_phone_destro, quantità: 1) (4, involucro_phone_sinistro, quantità: 1) 
+   mese: 3, modello: 3, quantità:3, componenti: (21, base_plafoniera_18cm, quantità: 1) (17, portalampade_E27, quantità: 1) (7, morsetto_mammut_a_2_vie, quantità: 1) (20, vetro_semi_circolare_convesso_20cm, quantità: 1) 
+
+
+Process finished with exit code 0
