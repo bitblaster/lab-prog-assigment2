@@ -14,7 +14,6 @@ using namespace parsers;
 using namespace std;
 
 
-// TODO mettere namespace alle classi!
 int main(int argc, char *argv[]) {
     if(argc < 2) {
         cout << "È necessario specificare il file degli ordini\nUso: produzione <file-ordine.dat>" << endl;
@@ -28,13 +27,13 @@ int main(int argc, char *argv[]) {
         option = argv[2];
 
     try {
-        BatchProcessor bp;
+        unique_ptr<BatchProcessor> bp {make_unique<BatchProcessor>()};
         if (option == "-v")
-            bp.set_verbose(true);
-        bp.load_components("components_info.dat");
-        bp.load_models("models.dat");
-        bp.load_orders(argv[1]);
-        bp.start_production();
+            bp->set_verbose(true);
+        bp->load_components("components_info.dat");
+        bp->load_models("models.dat");
+        bp->load_orders(argv[1]);
+        bp->start_production();
     } catch (ParsingException pe) {
         cout << "Error: " << pe.what() << endl << "Exiting..." << endl;
         return 1;

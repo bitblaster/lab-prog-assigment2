@@ -17,9 +17,6 @@
  * i mesi necessari alla spedizione della componente e i prezzi sono fissati in fase di costruzione e non possono essere
  * modificati
  *
- * Gli invarianti di classe sono:
- *  - month_to_delivery deve essere sempre > 0
- *  -i price1/2/3 maggiori di 0
  */
 
 

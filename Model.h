@@ -15,11 +15,6 @@
 #include "Part.h"
 #include "ComponentUsage.h"
 
-/**
- * Gli invarianti della classe sono:
- * - price > 0
- * - max_delivery_months > 0
- */
 
 class Model : public Part {
     double price;

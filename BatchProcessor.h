@@ -41,7 +41,7 @@ typedef std::pair<int, std::shared_ptr<const Component>> supply_key;
 class BatchProcessor {
     /** Mappa dei componenti */
     std::map<int, std::shared_ptr<const Component>> component_map;
-    /** Mappa dei componenti */
+    /** Mappa dei modelli */
     std::map<int, std::shared_ptr<const Model>> model_map;
 
     /** Lista completa degli ordini da elaborare, da cui gli ordini vengono estratti

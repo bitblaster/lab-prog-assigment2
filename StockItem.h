@@ -12,9 +12,6 @@
 /**
  * Classe che rappresenta il tipo di elementi all'interno del magazzino.
  *
- * Gli invarianti di classe sono:
- *  - quantity>0
- *  - availabiity non inferiore a 0
  */
 #include <ostream>
 #include <utility>

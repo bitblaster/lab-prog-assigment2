@@ -13,9 +13,6 @@
  * Classe che rappresenta un ordine. un ordine è caratterizzato da un timestamp, un id del modello ordinato e dalla
  * quantità di prodotti ordinati, e di conseguenza dalle componenti necessarie per realizzarlo.
  *
- * Gli invarianti di classe sono:
- *  -   quantity>0
- *  -   timestamp>0
  */
 #include <functional>
 #include <map>

@@ -9,10 +9,6 @@
 #ifndef INC_PART_H
 #define INC_PART_H
 
-/**
- * Gli invarianti della classe sono:
- * - id > 0
- */
 
 #include <string>
 #include <utility>

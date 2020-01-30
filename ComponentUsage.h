@@ -20,8 +20,6 @@
  * Il componente, il nome nel modello e la quantità sono fissati in fase di costruzione e non possono essere modificati
  * in seguito.
  *
- * Gli invarianti della classe sono:
- * - quantity > 0
  */
 class ComponentUsage {
     std::shared_ptr<const Component> component;
